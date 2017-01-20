@@ -1,0 +1,21 @@
+@import './variables.css';
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  background: #fff;
+  color: var(--color-tertiary);
+  font-family: var(--font-secondary), 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1.4em;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}

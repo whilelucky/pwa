@@ -1,0 +1,16 @@
+{
+  "presets": [
+    "latest",
+    "react",
+    "stage-1"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        "lodash",
+        "transform-react-remove-prop-types",
+        "transform-react-inline-elements"
+      ]
+    }
+  }
+}

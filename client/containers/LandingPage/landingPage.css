@@ -1,0 +1,55 @@
+@import '../../assets/css/variables.css';
+
+.landing-page {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.lp-testimonials {
+  margin-top: 5rem;
+
+  &__list {
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+
+  &__img {
+    border-radius: 50%;
+    width: 10.5rem;
+    height: 10.5rem;
+    border: 0.3rem solid transparent;
+    padding: 0.4rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &--active {
+      border-color: var(--color-primary);
+    }
+  }
+
+  &__list {
+    padding: 0 28rem;
+    justify-content: space-between;
+  }
+
+  &__user {
+    visibility: hidden;
+    color: var(--color-secondary);
+    margin-top: 0.8rem;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+
+    &--visible {
+      visibility: visible;
+    }
+  }
+
+  &__item {
+    text-align: center;
+  }
+
+  &__text {
+    font-size: 2.1rem;
+    line-height: 1.6;
+  }
+}

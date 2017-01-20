@@ -1,0 +1,16 @@
+{
+  "apps": [{
+    "name": "pwa-local",
+    "script": "./build/server/index.js",
+    "watch": "./build/server",
+    "merge_logs": true,
+    "log_date_format" : "YYYY-MM-DD HH:mm Z"
+  }, {
+    "name": "pwa",
+    "script": "./build/server/index.js",
+    "instances": 2,
+    "exec_mode": "cluster",
+    "merge_logs": true,
+    "log_date_format" : "YYYY-MM-DD HH:mm Z"
+  }]
+}

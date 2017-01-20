@@ -1,0 +1,126 @@
+@import './variables.css';
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ol {
+  list-style: decimal inside;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 0.8rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 0.4rem;
+}
+
+.heading-1 {
+  font-family: var(--font-primary);
+  font-size: 2.1rem;
+  font-weight: 500;
+  color: var(--color-secondary);
+}
+
+.heading-2 {
+  font-family: var(--font-secondary);
+  font-size: 2.1rem;
+  font-weight: 400;
+  color: var(--color-secondary);
+}
+
+.heading-3 {
+  font-family: var(--font-secondary);
+  font-size: 2.1rem;
+  font-weight: 400;
+  color: var(--color-tertiary);
+}
+
+.subheading-1 {
+  font-family: var(--font-primary);
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--color-secondary);
+}
+
+.subheading-2 {
+  font-family: var(--font-primary);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--color-secondary);
+}
+
+.subheading-3 {
+  font-family: var(--font-primary);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--color-tertiary);
+}
+
+.subheading-4 {
+  font-family: var(--font-secondary);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--color-tertiary);
+}
+
+.text-1 {
+  font-family: var(--font-secondary);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--color-tertiary);
+}
+
+.text-2 {
+  font-family: var(--font-secondary);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--color-tertiary);
+}
+
+.text-primary {
+  font-family: var(--font-secondary);
+  color: var(--color-primary);
+}
+
+.text-error {
+  font-family: var(--font-secondary);
+  color: var(--color-error);
+}
+
+.text-link {
+  font-family: var(--font-secondary);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--color-link);
+  cursor: pointer;
+}
+
+.text {
+  &--center {
+    text-align: center;
+  }
+
+  &--left {
+    text-align: right;
+  }
+
+  &--right {
+    text-align: right;
+  }
+}
