@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import qs from 'qs';
-import config from '../../config';
+import config from '../config';
 
 const handleResponse = (response) => (
   response.ok

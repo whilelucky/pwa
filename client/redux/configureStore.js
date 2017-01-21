@@ -2,7 +2,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import { default as reduxThunk } from 'redux-thunk';
 import { middleware as reduxPack } from 'redux-pack';
 import { createTracker as reduxSegment } from 'redux-segment';
-import api from '../utils/api';
+import { api } from '../../utils';
 import rootReducer from './rootReducer';
 
 const middlewares = [

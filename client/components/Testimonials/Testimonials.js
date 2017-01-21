@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import './testimonials.css';
 
 class Testimonials extends React.Component {
   state = {
@@ -14,41 +15,32 @@ class Testimonials extends React.Component {
     const { testimonials } = this.props;
     const { active } = this.state;
 
-    return (
-      <section className="lp-testimonials">
+    return testimonials.length ? (
+      <section className="Testimonials">
         <div className="container">
-          <ul className="row lp-testimonials__list">
+          <ul className="row list">
             {
-              testimonials.map(({ name, image_url: imageUrl }, i) => (
-                <li
-                  key={name}
-                  className={cx('lp-testimonials__item', {
-                    'lp-testimonials__item--active': active === i,
-                  })}
-                >
+              testimonials.map(({ name, picture }, i) => (
+                <li key={name.first}>
                   <img
-                    className={cx('lp-testimonials__img', {
-                      'lp-testimonials__img--active': active === i,
-                    })}
-                    src={`${imageUrl}?w=102&h=102&fm=pjpg&fit=crop`}
+                    className={cx('img', { 'img--active': active === i })}
+                    src={picture.medium}
                     alt={name}
                     onClick={this.showTestimonial(i)}
                   />
-                  <div
-                    className={cx('subheading-1 lp-testimonials__user', {
-                      'lp-testimonials__user--visible': active === i,
-                    })}
-                  >{name}</div>
+                  <div className={cx('subheading-1 name', { 'name--visible': active === i })}>
+                    {name.first}
+                  </div>
                 </li>
               ))
             }
           </ul>
-          <p className="text--center lp-testimonials__text text-1">
-            { testimonials[active].description }
+          <p className="text-1">
+            { testimonials[active].location.street }
           </p>
         </div>
       </section>
-    );
+    ) : (null);
   }
 }
 

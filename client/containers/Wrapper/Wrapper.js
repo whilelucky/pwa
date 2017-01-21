@@ -3,12 +3,12 @@ import Helmet from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { asyncConnect } from 'redux-connect';
 import { analyticsActionCreators } from '../../redux/ducks';
-import { performanceMark } from '../../utils/helpers';
+import { helpers } from '../../../utils';
 import './wrapper.css';
 
 class Wrapper extends React.Component {
   componentDidMount() {
-    performanceMark('firstInteraction');
+    helpers.performanceMark('firstInteraction');
     this.captureAnalytics();
   }
 
@@ -21,7 +21,7 @@ class Wrapper extends React.Component {
     const { children } = this.props;
 
     return (
-      <div id="wrapper" className="wrapper">
+      <div className="Wrapper">
         <Helmet title="PWA" />
         {children}
       </div>

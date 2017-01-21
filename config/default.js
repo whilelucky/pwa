@@ -1,5 +1,5 @@
 export default {
   analyticsBlacklistedIps: [],
-  apiUrl: 'http://www.mocky.io',
+  apiUrl: 'https://randomuser.me',
   segmentAPIKey: '',
 };

@@ -8,8 +8,6 @@ import './landingPage.css';
 
 class LandingPage extends React.Component {
   componentDidMount() {
-    const { content, contentActions } = this.props;
-    if (_.isEmpty(content.testimonials)) contentActions.getTestimonials();
     this.captureAnalytics();
   }
 
@@ -23,7 +21,7 @@ class LandingPage extends React.Component {
       content: { testimonials },
     } = this.props;
     return (
-      <div className="landing-page">
+      <div className="Landing-Page">
         <h1 className="heading-1">PWA Boilerplate</h1>
         <Testimonials testimonials={testimonials} />
       </div>
@@ -32,7 +30,6 @@ class LandingPage extends React.Component {
 }
 
 LandingPage.propTypes = {
-  contentActions: React.PropTypes.object.isRequired,
   analyticsActions: React.PropTypes.object.isRequired,
   content: React.PropTypes.object.isRequired,
 };
@@ -40,7 +37,7 @@ LandingPage.propTypes = {
 const beforeRouteEnter = [{
   promise: ({ store: { dispatch, getState } }) => {
     const promise = _.isEmpty(getState().content.testimonials)
-      ? dispatch(contentActionCreators.getTestimonials())
+      ? dispatch(contentActionCreators.getTestimonials(3))
       : null;
     return __BROWSER__ ? null : promise;
   },
@@ -51,7 +48,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  contentActions: bindActionCreators(contentActionCreators, dispatch),
   analyticsActions: bindActionCreators(analyticsActionCreators, dispatch),
 });
 
