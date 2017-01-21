@@ -1,0 +1,15 @@
+{
+  "name": "Progressive Web App",
+  "short_name": "PWA",
+  "description": "An opinionated progressive web app boilerplate",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffff00",
+  "theme_color": "#212121",
+  "start_url": ".",
+  "icons": [{
+    "src": "https://storage.googleapis.com/pwa-directory.appspot.com/128_5755364691673088.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}

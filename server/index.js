@@ -13,6 +13,7 @@ app
   .use(compression())
   .use('/build', express.static('build'))
   .use('/serviceWorker.js', express.static('build/client/js/serviceWorker.js'))
+  .use('/manifest.json', express.static('build/client/manifest.json'))
   .use(morgan(__LOCAL__ ? 'dev' : 'combined'))
   .use(slashes(true))
   .use(reactMiddleware)
