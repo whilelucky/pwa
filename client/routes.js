@@ -12,7 +12,7 @@ export default (
 
     <IndexRoute
       name="landing"
-      getComponent={lazy(require('bundle?lazy&name=Home!./containers/LandingPage/LandingPage'))}
+      getComponent={lazy(require('bundle-loader?lazy&name=Home!./containers/LandingPage/LandingPage'))}
     />
 
     <Route path="*" component={NotFound} />

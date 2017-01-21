@@ -25,13 +25,12 @@ const commonConfig = {
 
   module: {
     loaders: [
-      { test: /\.css$/, loaders: ['isomorphic-style', 'css'] },
-      { test: /\.json$/, loaders: ['json'] },
+      { test: /\.css$/, use: ['isomorphic-style-loader', 'css-loader'] },
     ],
   },
 
   plugins: [
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
 
@@ -41,9 +40,9 @@ const commonConfig = {
 const productionConfig = {
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loaders: ['babel'] },
-      { test: /\.(gif|png|jpe?g|svg|ico)$/i, loaders: ['file?name=assets/images/[name].[hash:8].[ext]'] },
-      { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, loaders: ['url?limit=1000&name=assets/fonts/[name].[hash:8].[ext]'] },
+      { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
+      { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'assets/images/[name].[hash:8].[ext]' } }] },
+      { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'assets/fonts/[name].[hash:8].[ext]' } }] },
     ],
   },
 
@@ -54,9 +53,12 @@ const productionConfig = {
       __PWA_ENV__: JSON.stringify(__PWA_ENV__),
       __LOCAL__: __PWA_ENV__ === 'local',
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
+    new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
       compress: {
         screw_ie8: true,
         warnings: false,
@@ -75,9 +77,9 @@ const productionConfig = {
 const developmentConfig = {
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loaders: ['babel?cacheDirectory=babel_cache'] },
-      { test: /\.(gif|png|jpe?g|svg|ico)$/i, loaders: ['file?name=assets/images/[name].[ext]'] },
-      { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, loaders: ['url?limit=1000&name=assets/fonts/[name].[ext]'] },
+      { test: /\.js$/, exclude: /node_modules/, use: [{ loader: 'babel-loader', options: { cacheDirectory: 'babel_cache' } }] },
+      { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'assets/images/[name].[ext]' } }] },
+      { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'assets/fonts/[name].[ext]' } }] },
     ],
   },
 
@@ -88,6 +90,7 @@ const developmentConfig = {
       __PWA_ENV__: JSON.stringify(__PWA_ENV__),
       __LOCAL__: __PWA_ENV__ === 'local',
     }),
+    new webpack.NamedModulesPlugin(),
   ],
 };
 

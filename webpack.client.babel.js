@@ -21,7 +21,7 @@ const commonConfig = {
   },
 
   plugins: [
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest'],
@@ -33,16 +33,6 @@ const commonConfig = {
       prettyPrint: true,
     }),
   ],
-
-  postcss: () => [
-    require('postcss-import')(),
-    require('postcss-url')(),
-    require('postcss-extend')(),
-    require('postcss-cssnext')(),
-    require('postcss-reporter')(),
-  ],
-
-  devtool: 'cheap-module-source-map',
 };
 
 const productionConfig = {
@@ -52,11 +42,11 @@ const productionConfig = {
   },
 
   module: {
-    loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loaders: ['babel'] },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css!postcss') },
-      { test: /\.(gif|png|jpe?g|svg|ico)$/i, loaders: ['file?name=assets/images/[name].[hash:8].[ext]'] },
-      { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, loaders: ['url?limit=1000&name=assets/fonts/[name].[hash:8].[ext]'] },
+    rules: [
+      { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader!postcss-loader' }) },
+      { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'assets/images/[name].[hash:8].[ext]' } }] },
+      { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'assets/fonts/[name].[hash:8].[ext]' } }] },
     ],
   },
 
@@ -67,9 +57,12 @@ const productionConfig = {
       __PWA_ENV__: JSON.stringify(__PWA_ENV__),
       __LOCAL__: __PWA_ENV__ === 'local',
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
+    new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
       compress: {
         screw_ie8: true,
         warnings: false,
@@ -82,9 +75,17 @@ const productionConfig = {
         screw_ie8: true,
       },
     }),
-    new ExtractTextPlugin('assets/css/[name].[contenthash:8].css', { allChunks: true }),
-    new SWPrecacheWebpackPlugin({ cacheId: 'pwa', filename: 'js/serviceWorker.js' }),
+    new ExtractTextPlugin({
+      filename: 'assets/css/[name].[contenthash:8].css',
+      allChunks: true,
+    }),
+    new SWPrecacheWebpackPlugin({
+      cacheId: 'pwa',
+      filename: 'js/serviceWorker.js',
+    }),
   ],
+
+  devtool: 'hidden-source-map',
 };
 
 const developmentConfig = {
@@ -95,10 +96,10 @@ const developmentConfig = {
 
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loaders: ['babel?cacheDirectory=babel_cache'] },
-      { test: /\.css$/, loaders: ['style', 'css', 'postcss'] },
-      { test: /\.(gif|png|jpe?g|svg|ico)$/i, loaders: ['file?name=assets/images/[name].[ext]'] },
-      { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, loaders: ['url?limit=1000&name=assets/fonts/[name].[ext]'] },
+      { test: /\.js$/, exclude: /node_modules/, use: [{ loader: 'babel-loader', options: { cacheDirectory: 'babel_cache' } }] },
+      { test: /\.css$/, use: ['style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader'] },
+      { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'assets/images/[name].[ext]' } }] },
+      { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'assets/fonts/[name].[ext]' } }] },
     ],
   },
 
@@ -109,6 +110,7 @@ const developmentConfig = {
       __PWA_ENV__: JSON.stringify(__PWA_ENV__),
       __LOCAL__: __PWA_ENV__ === 'local',
     }),
+    new webpack.NamedModulesPlugin(),
     new DashboardPlugin(),
   ],
 
