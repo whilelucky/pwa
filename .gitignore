@@ -1,5 +1,6 @@
-build
-node_modules
-babel_cache
-npm-debug.log*
 .idea
+babel_cache
+build
+coverage
+node_modules
+npm-debug.log*

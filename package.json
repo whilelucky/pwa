@@ -23,9 +23,11 @@
     "lint": "run-p lint:*",
     "lint:eslint": "eslint --ignore-path .gitignore .",
     "lint:stylelint": "stylelint ./client/**/*.css",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "pm2": "pm2"
   },
-  "pre-push": "lint",
+  "pre-push": "lint, test",
   "license": "UNLICENSED",
   "devDependencies": {
     "babel-core": "6.22.1",
@@ -47,6 +49,7 @@
     "eslint-plugin-react": "6.9.0",
     "file-loader": "0.9.0",
     "isomorphic-style-loader": "1.1.0",
+    "jest": "18.1.0",
     "npm-run-all": "4.0.1",
     "pm2": "2.2.3",
     "postcss-loader": "1.2.2",
@@ -70,6 +73,7 @@
     "lodash": "4.17.4",
     "moment": "2.17.1",
     "morgan": "1.7.0",
+    "nock": "9.0.2",
     "normalize.css": "5.0.0",
     "postcss-cssnext": "2.9.0",
     "postcss-extend": "1.0.5",
@@ -85,6 +89,7 @@
     "react-router": "3.0.2",
     "redux": "3.6.0",
     "redux-connect": "5.0.0",
+    "redux-mock-store": "1.2.1",
     "redux-pack": "0.1.4",
     "redux-segment": "1.6.1",
     "redux-thunk": "2.2.0",
@@ -93,5 +98,12 @@
     "webpack-dashboard": "0.2.1",
     "webpack-merge": "2.4.0",
     "webpack-node-externals": "1.5.4"
+  },
+  "jest": {
+    "globals": {
+      "__BROWSER__": false,
+      "__PWA_ENV__": "local",
+      "__LOCAL__": true
+    }
   }
 }

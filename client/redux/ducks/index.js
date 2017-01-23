@@ -1,2 +1,2 @@
-export * as analyticsActionCreators from './analyticsDuck';
-export contentReducer, * as contentActionCreators from './contentDuck';
+export * as analyticsActionCreators from './analyticsDuck/analyticsDuck';
+export contentReducer, * as contentActionCreators from './contentDuck/contentDuck';

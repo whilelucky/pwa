@@ -1,9 +1,12 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true,
+  },
   "globals": {
-    "window": false,
-    "document": false,
     "__BROWSER__": false,
     "__PWA_ENV__": false,
     "__LOCAL__": false,
