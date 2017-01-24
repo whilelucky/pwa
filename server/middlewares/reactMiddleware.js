@@ -10,6 +10,8 @@ import configureStore from '../../client/redux/configureStore';
 import routes from '../../client/routes';
 import assetsMap from '../../build/client/assetsMap.json';
 
+const PWA_SSR = process.env.PWA_SSR === 'true';
+
 const serverRenderedChunks = async (req, res, renderProps) => {
   const store = configureStore();
 
@@ -19,14 +21,14 @@ const serverRenderedChunks = async (req, res, renderProps) => {
   res.write(topHtmlChunk);
   res.flush();
 
-  await loadOnServer({ ...renderProps, store });
+  if (PWA_SSR) await loadOnServer({ ...renderProps, store });
 
   const coreHtmlChunk = html.core(
-    __LOCAL__ ? '' : renderToString(
+    PWA_SSR ? renderToString(
       <Provider store={store} key="provider">
         <ReduxAsyncConnect {...renderProps} />
       </Provider>,
-    ),
+    ) : '',
     Helmet.rewind(),
     store.getState(),
   );
