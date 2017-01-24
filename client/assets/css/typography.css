@@ -33,63 +33,54 @@ h6 {
 .heading-1 {
   font-family: var(--font-primary);
   font-size: 2.1rem;
-  font-weight: 500;
   color: var(--color-secondary);
 }
 
 .heading-2 {
   font-family: var(--font-secondary);
   font-size: 2.1rem;
-  font-weight: 400;
   color: var(--color-secondary);
 }
 
 .heading-3 {
   font-family: var(--font-secondary);
   font-size: 2.1rem;
-  font-weight: 400;
   color: var(--color-tertiary);
 }
 
 .subheading-1 {
   font-family: var(--font-primary);
   font-size: 1.8rem;
-  font-weight: 500;
   color: var(--color-secondary);
 }
 
 .subheading-2 {
   font-family: var(--font-primary);
   font-size: 1.4rem;
-  font-weight: 500;
   color: var(--color-secondary);
 }
 
 .subheading-3 {
   font-family: var(--font-primary);
   font-size: 1.4rem;
-  font-weight: 500;
   color: var(--color-tertiary);
 }
 
 .subheading-4 {
   font-family: var(--font-secondary);
   font-size: 1.4rem;
-  font-weight: 400;
   color: var(--color-tertiary);
 }
 
 .text-1 {
   font-family: var(--font-secondary);
   font-size: 1.6rem;
-  font-weight: 400;
   color: var(--color-tertiary);
 }
 
 .text-2 {
   font-family: var(--font-secondary);
   font-size: 1.4rem;
-  font-weight: 400;
   color: var(--color-tertiary);
 }
 
@@ -106,7 +97,6 @@ h6 {
 .text-link {
   font-family: var(--font-secondary);
   font-size: 1.4rem;
-  font-weight: 400;
   color: var(--color-link);
   cursor: pointer;
 }

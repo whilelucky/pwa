@@ -22,7 +22,8 @@ class LandingPage extends React.Component {
     } = this.props;
     return (
       <div className="Landing-Page">
-        <h1 className="heading-1">PWA Boilerplate</h1>
+        <h1 className="heading-1">PWA</h1>
+        <div className="subheading-2">An opinionated progressive web app boilerplate</div>
         <Testimonials testimonials={testimonials} />
       </div>
     );
