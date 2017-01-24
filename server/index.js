@@ -5,19 +5,19 @@ import morgan from 'morgan';
 import slashes from 'connect-slashes';
 import reactMiddleware from './middlewares/reactMiddleware';
 
-const __PORT__ = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8000;
 const app = express();
 
 app
   .set('trust proxy', true)
   .use(compression())
-  .use('/build', express.static('build'))
+  .use(morgan(__LOCAL__ ? 'dev' : 'combined'))
+  .use('/build/client', express.static('build/client'))
   .use('/serviceWorker.js', express.static('build/client/js/serviceWorker.js'))
   .use('/manifest.json', express.static('build/client/manifest.json'))
-  .use(morgan(__LOCAL__ ? 'dev' : 'combined'))
   .use(slashes(true))
   .use(reactMiddleware)
-  .listen(__PORT__, () => {
+  .listen(PORT, () => {
     // eslint-disable-next-line
-    console.info(`pwa is running as ${__PWA_ENV__} on port ${__PORT__}`);
+    console.info(`pwa is running as ${__PWA_ENV__} on port ${PORT}`);
   });
