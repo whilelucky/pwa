@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import LoaderHOC from '../../hoc/LoaderHOC/LoaderHOC';
+import LoaderHOC from '../../hocs/LoaderHOC/LoaderHOC';
 import './testimonials.css';
 
 class Testimonials extends React.Component {
