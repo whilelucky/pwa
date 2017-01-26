@@ -16,7 +16,7 @@ describe('contentActionCreators', () => {
     store.clearActions();
   });
 
-  it('dispatches GET_TESTIMONIALS', () => {
+  it('dispatches GET_TESTIMONIALS', async () => {
     const numberOfTestimonials = 3;
     const apiResult = { results: [{}, {}, {}] };
 
@@ -36,9 +36,10 @@ describe('contentActionCreators', () => {
       }),
     ];
 
-    return store.dispatch(contentActionCreators.getTestimonials(numberOfTestimonials))
-      .then(() => expect(store.getActions().map(testHelpers.removeReduxPackTransaction))
-          .toEqual(expectedActions));
+    await store.dispatch(contentActionCreators.getTestimonials(numberOfTestimonials));
+    const dispatchedActions = store.getActions().map(testHelpers.removeReduxPackTransaction);
+
+    expect(dispatchedActions).toEqual(expectedActions);
   });
 });
 
@@ -73,18 +74,14 @@ describe('contentReducer', () => {
       testHelpers.makeReduxPackAction(LIFECYCLE.FAILURE, {
         type: 'GET_TESTIMONIALS',
         payload: {
-          error: {
-            msg: 'some error',
-          },
+          error: {},
         },
       }),
     );
 
     const expectedState = {
       ...initialState,
-      error: {
-        msg: 'some error',
-      },
+      error: {},
     };
 
     expect(finalState).toEqual(expectedState);
