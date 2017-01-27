@@ -82,6 +82,7 @@ const productionConfig = {
     new SWPrecacheWebpackPlugin({
       cacheId: 'pwa',
       filename: 'js/serviceWorker.js',
+      minify: true,
     }),
   ],
 
