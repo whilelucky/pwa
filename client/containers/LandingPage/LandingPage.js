@@ -1,12 +1,12 @@
 import _ from 'lodash';
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { asyncConnect } from 'redux-connect';
 import { contentActionCreators, analyticsActionCreators } from '../../redux/ducks';
 import Testimonials from '../../components/Testimonials/Testimonials';
 import './landingPage.css';
 
-class LandingPage extends React.Component {
+class LandingPage extends Component {
   componentDidMount() {
     this.captureAnalytics();
   }
@@ -31,8 +31,8 @@ class LandingPage extends React.Component {
 }
 
 LandingPage.propTypes = {
-  analyticsActions: React.PropTypes.object.isRequired,
-  content: React.PropTypes.object.isRequired,
+  analyticsActions: PropTypes.object.isRequired,
+  content: PropTypes.object.isRequired,
 };
 
 const beforeRouteEnter = [{

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { asyncConnect } from 'redux-connect';
@@ -6,7 +6,7 @@ import { analyticsActionCreators } from '../../redux/ducks';
 import { helpers } from '../../../utils';
 import './wrapper.css';
 
-class Wrapper extends React.Component {
+class Wrapper extends Component {
   componentDidMount() {
     helpers.performanceMark('firstInteraction');
     this.captureAnalytics();
@@ -30,9 +30,9 @@ class Wrapper extends React.Component {
 }
 
 Wrapper.propTypes = {
-  children: React.PropTypes.element.isRequired,
-  analyticsActions: React.PropTypes.object.isRequired,
-  location: React.PropTypes.object.isRequired,
+  children: PropTypes.element.isRequired,
+  analyticsActions: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 const beforeRouteEnter = [];

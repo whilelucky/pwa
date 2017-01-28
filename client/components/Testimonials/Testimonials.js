@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
 import LoaderHOC from '../../hocs/LoaderHOC/LoaderHOC';
 import './testimonials.css';
 
-class Testimonials extends React.Component {
+class Testimonials extends Component {
   state = {
     active: 1,
   };
@@ -47,8 +47,8 @@ class Testimonials extends React.Component {
 }
 
 Testimonials.propTypes = {
-  testimonials: React.PropTypes.array.isRequired,
-  loadTime: React.PropTypes.string,
+  testimonials: PropTypes.array.isRequired,
+  loadTime: PropTypes.string,
 };
 
 export default LoaderHOC('testimonials')(Testimonials);
