@@ -42,7 +42,7 @@
     "test:watch": "jest --watch",
     "pm2": "pm2"
   },
-  "pre-push": "lint, test",
+  "pre-commit": "lint, test",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "6.22.1",
@@ -68,7 +68,7 @@
     "npm-run-all": "4.0.1",
     "pm2": "2.3.0",
     "postcss-loader": "1.2.2",
-    "pre-push": "0.1.1",
+    "pre-commit": "1.2.2",
     "rimraf": "2.5.4",
     "style-loader": "0.13.1",
     "stylelint": "7.7.1",
