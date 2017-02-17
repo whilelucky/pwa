@@ -111,7 +111,6 @@
     "sw-precache-webpack-plugin": "0.9.0",
     "webpack": "2.2.1",
     "webpack-dashboard": "0.3.0",
-    "webpack-merge": "2.6.1",
     "webpack-node-externals": "1.5.4"
   },
   "jest": {
