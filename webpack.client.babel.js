@@ -8,11 +8,12 @@ import path from 'path';
 
 const __NODE_ENV__ = process.env.NODE_ENV;
 const __PWA_ENV__ = process.env.PWA_ENV;
+const __PWA_PUBLIC_PATH__ = process.env.PWA_PUBLIC_PATH;
 
 const ifProd = (value, alternate) =>
   (__NODE_ENV__ === 'production' ? value : alternate);
 
-const webpackClientConfig = {
+export default {
   cache: ifProd(false, true),
 
   entry: {
@@ -22,6 +23,7 @@ const webpackClientConfig = {
 
   output: {
     path: path.resolve('./build/client'),
+    publicPath: __PWA_PUBLIC_PATH__,
     filename: ifProd('js/[name].[chunkhash:8].js', 'js/[name].js'),
     chunkFilename: ifProd('js/[name].[chunkhash:8].js', 'js/[name].js'),
   },
@@ -94,15 +96,3 @@ const webpackClientConfig = {
 
   devtool: ifProd('hidden-source-map', 'inline-source-map'),
 };
-
-if (__PWA_ENV__ === 'local') {
-  webpackClientConfig.output.publicPath = 'http://localhost:8080/build/client/';
-} else if (__PWA_ENV__ === 'development') {
-  webpackClientConfig.output.publicPath = '/build/client/';
-} else if (__PWA_ENV__ === 'staging') {
-  webpackClientConfig.output.publicPath = '//staging.cdn.com/build/client/';
-} else if (__PWA_ENV__ === 'production') {
-  webpackClientConfig.output.publicPath = '//production.cdn.com/build/client/';
-}
-
-export default webpackClientConfig;

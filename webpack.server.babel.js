@@ -4,11 +4,12 @@ import nodeExternals from 'webpack-node-externals';
 
 const __NODE_ENV__ = process.env.NODE_ENV;
 const __PWA_ENV__ = process.env.PWA_ENV;
+const __PWA_PUBLIC_PATH__ = process.env.PWA_PUBLIC_PATH;
 
 const ifProd = (value, alternate) =>
   (__NODE_ENV__ === 'production' ? value : alternate);
 
-const webpackServerConfig = {
+export default {
   entry: './server/index.js',
 
   target: 'node',
@@ -20,6 +21,7 @@ const webpackServerConfig = {
 
   output: {
     path: './build/server',
+    publicPath: __PWA_PUBLIC_PATH__,
     filename: 'index.js',
     chunkFilename: '[name].js',
     libraryTarget: 'commonjs',
@@ -74,15 +76,3 @@ const webpackServerConfig = {
 
   devtool: 'source-map',
 };
-
-if (__PWA_ENV__ === 'local') {
-  webpackServerConfig.output.publicPath = 'http://localhost:8080/build/client/';
-} else if (__PWA_ENV__ === 'development') {
-  webpackServerConfig.output.publicPath = '/build/client/';
-} else if (__PWA_ENV__ === 'staging') {
-  webpackServerConfig.output.publicPath = '//staging.cdn.com/build/client/';
-} else if (__PWA_ENV__ === 'production') {
-  webpackServerConfig.output.publicPath = '//production.cdn.com/build/client/';
-}
-
-export default webpackServerConfig;
