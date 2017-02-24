@@ -35,7 +35,7 @@ export default {
     return fireRequest('PUT', url, data);
   },
 
-  del(url) {
-    return fireRequest('DEL', url);
+  delete(url) {
+    return fireRequest('DELETE', url);
   },
 };
