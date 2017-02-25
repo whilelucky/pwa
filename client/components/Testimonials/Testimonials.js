@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
-import LoaderHOC from '../../hocs/LoaderHOC/LoaderHOC';
+import LoaderHOC from '../hocs/LoaderHOC/LoaderHOC';
 import './testimonials.css';
 
 class Testimonials extends Component {
