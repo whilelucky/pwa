@@ -1,17 +1,18 @@
 /* eslint-disable max-len */
+import path from 'path';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import AssetsPlugin from 'assets-webpack-plugin';
 import SWPrecacheWebpackPlugin from 'sw-precache-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import DashboardPlugin from 'webpack-dashboard/plugin';
-import path from 'path';
 
 const __NODE_ENV__ = process.env.NODE_ENV;
 const __PWA_ENV__ = process.env.PWA_ENV;
 const __PWA_PUBLIC_PATH__ = process.env.PWA_PUBLIC_PATH;
 
-const ifProd = (value, alternate) =>
-  (__NODE_ENV__ === 'production' ? value : alternate);
+const ifProd = (prodConfig, devConfig) =>
+  (__NODE_ENV__ === 'production' ? prodConfig : devConfig);
 
 export default {
   cache: ifProd(false, true),
@@ -87,6 +88,11 @@ export default {
         cacheId: 'pwa',
         filename: 'js/serviceWorker.js',
         minify: true,
+      }),
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        openAnalyzer: false,
+        reportFilename: 'bundle-analysis.html',
       }),
     ], [
       new webpack.NamedModulesPlugin(),

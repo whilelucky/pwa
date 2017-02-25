@@ -1,6 +1,6 @@
 import nock from 'nock';
 import { LIFECYCLE } from 'redux-pack';
-import { testHelpers } from '../../../../utils';
+import * as testHelpers from '../../../../utils/testHelpers';
 import contentReducer, * as contentActionCreators from './contentDuck';
 
 const initialState = {

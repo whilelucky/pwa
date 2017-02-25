@@ -1,4 +1,5 @@
 import 'classnames';
+import 'isomorphic-fetch';
 import 'moment';
 import 'qs';
 import 'react-dom';

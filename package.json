@@ -110,6 +110,7 @@
     "redux-thunk": "2.2.0",
     "sw-precache-webpack-plugin": "0.9.0",
     "webpack": "2.2.1",
+    "webpack-bundle-analyzer": "2.3.0",
     "webpack-dashboard": "0.3.0",
     "webpack-node-externals": "1.5.4"
   },
