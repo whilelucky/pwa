@@ -1,10 +1,21 @@
 {
   "presets": [
-    "latest",
+    ["latest", {
+      "es2015": {
+        "modules": false
+      }
+    }],
     "react",
     "stage-1"
   ],
   "env": {
+    "test": {
+      "presets": [
+        "latest",
+        "react",
+        "stage-1"
+      ]
+    },
     "production": {
       "plugins": [
         "lodash",
