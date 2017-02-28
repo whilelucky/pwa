@@ -43,7 +43,6 @@ describe('contentActionCreators', () => {
   });
 });
 
-
 describe('contentReducer', () => {
   it('returns intialState', () => {
     const finalState = contentReducer(undefined, {});
