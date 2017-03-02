@@ -86,7 +86,8 @@ module.exports = {
       }),
       new SWPrecacheWebpackPlugin({
         cacheId: 'pwa',
-        filename: 'js/serviceWorker.js',
+        filename: 'serviceWorker.js',
+        staticFileGlobsIgnorePatterns: [/\.map$/],
         minify: true,
       }),
       new BundleAnalyzerPlugin({

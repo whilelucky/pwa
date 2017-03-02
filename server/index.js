@@ -15,7 +15,7 @@ app.use(helmet({ dnsPrefetchControl: false }));
 app.use(compression());
 app.use(morgan(__LOCAL__ ? 'dev' : 'combined'));
 app.use('/build/client', express.static('build/client'));
-app.use('/serviceWorker.js', express.static('build/client/js/serviceWorker.js'));
+app.use('/serviceWorker.js', express.static('build/client/serviceWorker.js'));
 app.use('/manifest.json', express.static('build/client/manifest.json'));
 app.use(slashes(true));
 app.use(reactMiddleware);
