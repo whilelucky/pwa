@@ -31,71 +31,59 @@ h6 {
 }
 
 .heading-1 {
-  font-family: var(--font-primary);
   font-size: 2.1rem;
   color: var(--color-secondary);
 }
 
 .heading-2 {
-  font-family: var(--font-secondary);
   font-size: 2.1rem;
   color: var(--color-secondary);
 }
 
 .heading-3 {
-  font-family: var(--font-secondary);
   font-size: 2.1rem;
   color: var(--color-tertiary);
 }
 
 .subheading-1 {
-  font-family: var(--font-primary);
   font-size: 1.8rem;
   color: var(--color-secondary);
 }
 
 .subheading-2 {
-  font-family: var(--font-primary);
   font-size: 1.4rem;
   color: var(--color-secondary);
 }
 
 .subheading-3 {
-  font-family: var(--font-primary);
   font-size: 1.4rem;
   color: var(--color-tertiary);
 }
 
 .subheading-4 {
-  font-family: var(--font-secondary);
   font-size: 1.4rem;
   color: var(--color-tertiary);
 }
 
 .text-1 {
-  font-family: var(--font-secondary);
   font-size: 1.6rem;
   color: var(--color-tertiary);
 }
 
 .text-2 {
-  font-family: var(--font-secondary);
   font-size: 1.4rem;
   color: var(--color-tertiary);
 }
 
 .text-primary {
-  font-family: var(--font-secondary);
   color: var(--color-primary);
 }
 
 .text-error {
-  font-family: var(--font-secondary);
   color: var(--color-error);
 }
 
 .text-link {
-  font-family: var(--font-secondary);
   font-size: 1.4rem;
   color: var(--color-link);
   cursor: pointer;

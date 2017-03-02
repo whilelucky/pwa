@@ -14,12 +14,6 @@
   --color-primary-hover: #93d0c8;
 }
 
-/* Fonts */
-:root {
-  --font-primary: 'Roboto Mono';
-  --font-secondary: 'Roboto Slab';
-}
-
 /* Others */
 :root {
   --shadow-primary: 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.1);
