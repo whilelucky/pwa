@@ -1,5 +1,4 @@
 .container {
-  width: 102.4rem;
   margin-right: auto;
   margin-left: auto;
 }
@@ -61,18 +60,18 @@
 }
 
 .col,
-.col-1,
-.col-2,
-.col-3,
-.col-4,
-.col-5,
-.col-6,
-.col-7,
-.col-8,
-.col-9,
-.col-10,
-.col-11,
-.col-12 {
+.col--1,
+.col--2,
+.col--3,
+.col--4,
+.col--5,
+.col--6,
+.col--7,
+.col--8,
+.col--9,
+.col--10,
+.col--11,
+.col--12 {
   box-sizing: border-box;
   flex: 0 0 auto;
   padding-right: 0.8rem;
@@ -85,112 +84,108 @@
   max-width: 100%;
 }
 
-.col-1 {
+.col--1 {
   flex-basis: 8.333%;
   max-width: 8.333%;
 }
 
-.col-2 {
+.col--2 {
   flex-basis: 16.667%;
   max-width: 16.667%;
 }
 
-.col-3 {
+.col--3 {
   flex-basis: 25%;
   max-width: 25%;
 }
 
-.col-4 {
+.col--4 {
   flex-basis: 33.333%;
   max-width: 33.333%;
 }
 
-.col-5 {
+.col--5 {
   flex-basis: 41.667%;
   max-width: 41.667%;
 }
 
-.col-6 {
+.col--6 {
   flex-basis: 50%;
   max-width: 50%;
 }
 
-.col-7 {
+.col--7 {
   flex-basis: 58.333%;
   max-width: 58.333%;
 }
 
-.col-8 {
+.col--8 {
   flex-basis: 66.667%;
   max-width: 66.667%;
 }
 
-.col-9 {
+.col--9 {
   flex-basis: 75%;
   max-width: 75%;
 }
 
-.col-10 {
+.col--10 {
   flex-basis: 83.333%;
   max-width: 83.333%;
 }
 
-.col-11 {
+.col--11 {
   flex-basis: 91.667%;
   max-width: 91.667%;
 }
 
-.col-12 {
+.col--12 {
   flex-basis: 100%;
   max-width: 100%;
 }
 
-.col-offset-1 {
+.col--offset-1 {
   margin-left: 8.333%;
 }
 
-.col-offset-2 {
+.col--offset-2 {
   margin-left: 16.667%;
 }
 
-.col-offset-3 {
+.col--offset-3 {
   margin-left: 25%;
 }
 
-.col-offset-4 {
+.col--offset-4 {
   margin-left: 33.333%;
 }
 
-.col-offset-5 {
+.col--offset-5 {
   margin-left: 41.667%;
 }
 
-.col-offset-6 {
+.col--offset-6 {
   margin-left: 50%;
 }
 
-.col-offset-7 {
+.col--offset-7 {
   margin-left: 58.333%;
 }
 
-.col-offset-8 {
+.col--offset-8 {
   margin-left: 66.667%;
 }
 
-.col-offset-9 {
+.col--offset-9 {
   margin-left: 75%;
 }
 
-.col-offset-10 {
+.col--offset-10 {
   margin-left: 83.333%;
 }
 
-.col-offset-11 {
+.col--offset-11 {
   margin-left: 91.667%;
-}
-
-.col--reverse {
-  flex-direction: column-reverse;
 }
 
 .col--first {
@@ -199,4 +194,8 @@
 
 .col--last {
   order: 1;
+}
+
+.col--reverse {
+  flex-direction: column-reverse;
 }
