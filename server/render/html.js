@@ -14,7 +14,8 @@ export default {
           <link rel="preload" as="script" href="${assetsMap.vendor.js}">
           <link rel="preload" as="script" href="${assetsMap.main.js}">
           <meta charset="utf-8">
-          <meta content="width=device-width, initial-scale=1" name="viewport">
+          <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+          <meta name="theme-color" content="#5500eb">
           <link rel="icon" type="image/x-icon" href="//images.cdn.com/favicon.ico">
           <script defer src="${assetsMap.Home.js}"></script>
           ${__LOCAL__ ? '' : '<link rel="manifest" href="/manifest.json">'}`;
