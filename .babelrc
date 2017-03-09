@@ -1,9 +1,11 @@
 {
-  "presets": [
-    ["latest", {
-      "es2015": {
-        "modules": false
-      }
+  "presets":[
+    ["env", {
+      "targets": {
+        "uglify": true
+      },
+      "modules": false,
+      "useBuiltIns": true
     }],
     "react",
     "stage-1"
@@ -11,7 +13,7 @@
   "env": {
     "test": {
       "presets": [
-        "latest",
+        "env",
         "react",
         "stage-1"
       ]
