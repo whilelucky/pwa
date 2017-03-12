@@ -39,7 +39,9 @@
     "lint:eslint": "eslint --ignore-path .gitignore .",
     "lint:stylelint": "stylelint ./client/**/*.css",
     "test": "NODE_ENV=test jest",
-    "pm2": "pm2"
+    "pm2": "pm2",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "pre-commit": "lint, test",
   "license": "MIT",
@@ -112,7 +114,8 @@
     "webpack": "2.2.1",
     "webpack-bundle-analyzer": "2.3.1",
     "webpack-dashboard": "0.3.0",
-    "webpack-node-externals": "1.5.4"
+    "webpack-node-externals": "1.5.4",
+    "snyk": "^1.25.2"
   },
   "jest": {
     "globals": {
@@ -128,5 +131,6 @@
   "bugs": {
     "url": "https://github.com/lakshyaranganath/pwa/issues"
   },
-  "homepage": "https://github.com/lakshyaranganath/pwa#readme"
+  "homepage": "https://github.com/lakshyaranganath/pwa#readme",
+  "snyk": true
 }

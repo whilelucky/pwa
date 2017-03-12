@@ -1,0 +1,11 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:marked:20170112':
+    - postcss-style-guide > marked:
+        patched: '2017-03-12T07:31:45.090Z'
+  'npm:uglify-js:20151024':
+    - postcss-url > directory-encoder > handlebars > uglify-js:
+        patched: '2017-03-12T07:31:45.090Z'
