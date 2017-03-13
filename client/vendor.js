@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import 'classnames';
 import 'isomorphic-fetch';
 import 'moment';
