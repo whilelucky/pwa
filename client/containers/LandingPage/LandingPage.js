@@ -1,7 +1,7 @@
-import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { asyncConnect } from 'redux-connect';
+import isEmpty from 'lodash/isEmpty';
 import { contentActionCreators, analyticsActionCreators } from '../../redux/ducks';
 import Testimonials from '../../components/Testimonials/Testimonials';
 import './landingPage.css';
@@ -37,7 +37,7 @@ LandingPage.propTypes = {
 
 const beforeRouteEnter = [{
   promise: ({ store: { dispatch, getState } }) => {
-    const promise = _.isEmpty(getState().content.testimonials)
+    const promise = isEmpty(getState().content.testimonials)
       ? dispatch(contentActionCreators.getTestimonials(3))
       : null;
     return __BROWSER__ ? null : promise;

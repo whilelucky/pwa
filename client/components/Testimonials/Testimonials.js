@@ -19,7 +19,7 @@ class Testimonials extends Component {
 
     return testimonials.length ? (
       <section className="Testimonials">
-        {isNaN(loadTime) ? null : <small>Took: {loadTime}s</small>}
+        {loadTime ? (<small>Took: {loadTime}</small>) : null}
         <Row className="list" between>
           {
             testimonials.map(({ name, picture }, i) => (

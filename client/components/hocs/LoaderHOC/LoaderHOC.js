@@ -1,24 +1,25 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
+import isEmpty from 'lodash/isEmpty';
+import moment from 'moment';
 import './loaderHOC.css';
 
 const LoaderHOC = (property) =>
   (WrappedComponent) =>
     class extends Component {
       componentDidMount() {
-        this.startTime = Date.now();
+        this.startTime = moment();
       }
 
       componentWillUpdate() {
-        this.endTime = Date.now();
+        this.endTime = moment();
       }
 
       render() {
         const additionalProps = {
-          loadTime: ((this.endTime - this.startTime) / 1000).toFixed(2),
+          loadTime: this.endTime ? `${this.endTime.diff(this.startTime, 'ms')}ms` : null,
         };
 
-        return _.isEmpty(this.props[property]) ? (
+        return isEmpty(this.props[property]) ? (
           <div className="sk-cube-grid">
             <div className="sk-cube sk-cube1" />
             <div className="sk-cube sk-cube2" />

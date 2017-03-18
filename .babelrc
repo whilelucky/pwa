@@ -20,7 +20,6 @@
     },
     "production": {
       "plugins": [
-        "lodash",
         "transform-react-remove-prop-types",
         "transform-react-inline-elements"
       ]
