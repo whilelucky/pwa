@@ -1,22 +1,25 @@
 import React, { PropTypes } from 'react';
+import cx from 'classnames';
 
-const getGridClasses = (props) => (props.fluid ? 'container-fluid' : 'container');
-
-const Grid = ({ className, tagName, children, ...modifierProps }) => {
-  React.createElement(tagName, {
-    className: `${className ? `${className} container` : 'container'} ${getGridClasses(modifierProps)}`,
+const Grid = ({ className, tag, fluid, children, ...restProps }) => {
+  React.createElement(tag, {
+    className: cx({
+      container: !fluid,
+      'container-fluid': fluid,
+    }, className),
+    ...restProps,
   }, children);
 };
 
 Grid.propTypes = {
   className: PropTypes.string,
-  tagName: PropTypes.string,
-  fluid: PropTypes.bool,
-  children: PropTypes.node,
+  tag: PropTypes.string.isRequired,
+  fluid: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 Grid.defaultProps = {
-  tagName: 'div',
+  tag: 'div',
   fluid: false,
 };
 

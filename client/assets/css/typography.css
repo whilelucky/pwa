@@ -88,17 +88,3 @@ h6 {
   color: var(--color-link);
   cursor: pointer;
 }
-
-.text {
-  &--center {
-    text-align: center;
-  }
-
-  &--left {
-    text-align: right;
-  }
-
-  &--right {
-    text-align: right;
-  }
-}

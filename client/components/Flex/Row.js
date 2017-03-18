@@ -1,21 +1,24 @@
 import React, { PropTypes } from 'react';
+import cx from 'classnames';
 
-const rowClassNames = ['start', 'center', 'end', 'top', 'middle', 'bottom', 'around', 'between', 'reverse'];
-
-const getRowModifiers = (props) =>
-  rowClassNames
-    .map((cn) => (props[cn] ? `row--${cn}` : ''))
-    .filter((cn) => cn)
-    .join(' ');
-
-const Row = ({ className, tagName, children, ...modifierProps }) =>
-  React.createElement(tagName, {
-    className: `${className ? `${className} row` : 'row'} ${getRowModifiers(modifierProps)}`,
+const Row = ({ className, tag, children, ...modifiers }) =>
+  React.createElement(tag, {
+    className: cx('row', {
+      'row--start': modifiers.start,
+      'row--center': modifiers.center,
+      'row--end': modifiers.end,
+      'row--top': modifiers.top,
+      'row--middle': modifiers.middle,
+      'row--bottom': modifiers.bottom,
+      'row--around': modifiers.around,
+      'row--between': modifiers.between,
+      'row--reverse': modifiers.reverse,
+    }, className),
   }, children);
 
 Row.propTypes = {
   className: PropTypes.string,
-  tagName: PropTypes.string,
+  tag: PropTypes.string.isRequired,
   start: PropTypes.bool,
   center: PropTypes.bool,
   end: PropTypes.bool,
@@ -25,11 +28,11 @@ Row.propTypes = {
   around: PropTypes.bool,
   between: PropTypes.bool,
   reverse: PropTypes.bool,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 Row.defaultProps = {
-  tagName: 'div',
+  tag: 'div',
 };
 
 export default Row;
