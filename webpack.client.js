@@ -56,6 +56,10 @@ module.exports = {
       names: ['vendor', 'manifest'],
       minChunks: Infinity,
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+      children: true,
+      minChunks: 2,
+    }),
     new AssetsPlugin({
       filename: 'assetsMap.json',
       path: path.resolve('./build/client'),
