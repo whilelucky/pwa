@@ -30,6 +30,13 @@ module.exports = {
     chunkFilename: ifProd('js/[name].[chunkhash:8].js', 'js/[name].js'),
   },
 
+  resolve: {
+    alias: {
+      react: 'preact-compat',
+      'react-dom': 'preact-compat',
+    },
+  },
+
   module: {
     rules: ifProd([
       { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },

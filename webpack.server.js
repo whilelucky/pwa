@@ -28,6 +28,13 @@ module.exports = {
     libraryTarget: 'commonjs',
   },
 
+  resolve: {
+    alias: {
+      react: 'preact-compat',
+      'react-dom': 'preact-compat',
+    },
+  },
+
   module: {
     rules: ifProd([
       { test: /\.css$/, use: ['isomorphic-style-loader', 'css-loader'] },

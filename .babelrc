@@ -20,8 +20,7 @@
     },
     "production": {
       "plugins": [
-        "transform-react-remove-prop-types",
-        "transform-react-inline-elements"
+        "transform-react-remove-prop-types"
       ]
     }
   }
