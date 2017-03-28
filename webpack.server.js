@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const __NODE_ENV__ = process.env.NODE_ENV;
 const __PWA_ENV__ = process.env.PWA_ENV;
@@ -43,6 +44,7 @@ module.exports = {
 
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
+    new CleanWebpackPlugin(['./build/server']),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': ifProd('"production"', '"development"'),
       __BROWSER__: false,
