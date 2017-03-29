@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -21,7 +22,7 @@ module.exports = {
   ],
 
   output: {
-    path: './build/server',
+    path: path.resolve('./build/server'),
     publicPath: __PWA_PUBLIC_PATH__,
     filename: 'index.js',
     chunkFilename: '[name].js',
