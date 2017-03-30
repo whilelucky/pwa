@@ -77,6 +77,7 @@ module.exports = {
     ...ifProd([
       new webpack.LoaderOptionsPlugin({
         minimize: true,
+        debug: false,
       }),
       new webpack.HashedModuleIdsPlugin(),
       new webpack.optimize.UglifyJsPlugin({
