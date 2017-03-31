@@ -8,7 +8,7 @@ import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
 import html from '../render/html';
 import configureStore from '../../client/redux/configureStore';
 import routes from '../../client/routes';
-import assetsMap from '../../build/client/assetsMap.json';
+import assetsManifest from '../../build/client/assetsManifest.json';
 
 const PWA_SSR = process.env.PWA_SSR === 'true';
 
@@ -17,7 +17,7 @@ const serverRenderedChunks = async (req, res, renderProps) => {
 
   res.set('Content-Type', 'text/html');
 
-  const topHtmlChunk = html.top(assetsMap);
+  const topHtmlChunk = html.top(assetsManifest);
   res.write(topHtmlChunk);
   res.flush();
 
@@ -31,7 +31,7 @@ const serverRenderedChunks = async (req, res, renderProps) => {
     ) : '',
     Helmet.rewind(),
     store.getState(),
-    assetsMap,
+    assetsManifest,
     req.ip,
   );
   res.write(bottomHtmlChunk);

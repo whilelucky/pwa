@@ -70,7 +70,7 @@ module.exports = {
       minChunks: 2,
     }),
     new AssetsPlugin({
-      filename: 'assetsMap.json',
+      filename: 'assetsManifest.json',
       path: path.resolve('./build/client'),
       includeManifest: 'webpackManifest',
       prettyPrint: true,
