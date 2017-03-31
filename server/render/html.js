@@ -10,7 +10,7 @@ export default {
           <link rel="dns-prefetch" href="//static.cdn.com">
           <link rel="dns-prefetch" href="//images.cdn.com">
           ${__LOCAL__ ? '' : `<link rel="stylesheet" href="${assetsMap.main.css}">`}
-          <link rel="preload" as="script" href="${assetsMap.manifest.js}">
+          <script>${assetsMap.webpackManifest.text}</script>
           <link rel="preload" as="script" href="${assetsMap.vendor.js}">
           <link rel="preload" as="script" href="${assetsMap.main.js}">
           <meta charset="utf-8">
@@ -34,7 +34,6 @@ export default {
           <script>${scripts.initialState(initialState)}</script>
           ${__LOCAL__ ? '' : `<script>${scripts.serviceWorker}</script>`}
           <script>${scripts.analytics(ip)}</script>
-          <script src="${assetsMap.manifest.js}"></script>
           <script src="${assetsMap.vendor.js}"></script>
           <script src="${assetsMap.main.js}"></script>
         </body>

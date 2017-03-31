@@ -62,7 +62,7 @@ module.exports = {
       __LOCAL__: __PWA_ENV__ === 'local',
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest'],
+      names: ['vendor', 'webpackManifest'],
       minChunks: Infinity,
     }),
     new webpack.optimize.CommonsChunkPlugin({
@@ -72,6 +72,7 @@ module.exports = {
     new AssetsPlugin({
       filename: 'assetsMap.json',
       path: path.resolve('./build/client'),
+      includeManifest: 'webpackManifest',
       prettyPrint: true,
     }),
     ...ifProd([
