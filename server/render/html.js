@@ -15,7 +15,7 @@ export default {
           ${__LOCAL__ ? '' : `<link rel="stylesheet" href="${assetsManifest.main.css}">`}
           <link rel="preload" as="script" href="${assetsManifest.vendor.js}">
           <link rel="preload" as="script" href="${assetsManifest.main.js}">
-          <link rel="preload" as="script" href="${assetsManifest.Home.js}">
+          <link rel="preload" as="script" href="${assetsManifest.landing.js}">
           <link rel="icon" type="image/x-icon" href="//images.cdn.com/favicon.ico">
           ${__LOCAL__ ? '' : '<link rel="manifest" href="/manifest.json">'}`;
   },
