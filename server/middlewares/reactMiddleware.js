@@ -13,11 +13,12 @@ import assetsManifest from '../../build/client/assetsManifest.json';
 const PWA_SSR = process.env.PWA_SSR === 'true';
 
 const serverRenderedChunks = async (req, res, renderProps) => {
+  const route = renderProps.routes[renderProps.routes.length - 1];
   const store = configureStore();
 
   res.set('Content-Type', 'text/html');
 
-  const topHtmlChunk = html.top(assetsManifest);
+  const topHtmlChunk = html.top(assetsManifest, route);
   res.write(topHtmlChunk);
   res.flush();
 
