@@ -18,13 +18,13 @@ const serverRenderedChunks = async (req, res, renderProps) => {
 
   res.set('Content-Type', 'text/html');
 
-  const topHtmlChunk = html.top(assetsManifest, route);
-  res.write(topHtmlChunk);
+  const earlyChunk = html.earlyChunk(assetsManifest, route);
+  res.write(earlyChunk);
   res.flush();
 
   if (PWA_SSR) await loadOnServer({ ...renderProps, store });
 
-  const bottomHtmlChunk = html.bottom(
+  const lateChunk = html.lateChunk(
     PWA_SSR ? renderToString(
       <Provider store={store} key="provider">
         <ReduxAsyncConnect {...renderProps} />
@@ -35,7 +35,7 @@ const serverRenderedChunks = async (req, res, renderProps) => {
     assetsManifest,
     req.ip,
   );
-  res.write(bottomHtmlChunk);
+  res.write(lateChunk);
   res.flush();
 
   res.end();

@@ -2,26 +2,26 @@
 import scripts from './scripts';
 
 export default {
-  top(assetsManifest, route) {
+  earlyChunk(assetsManifest, route) {
     return `
       <!doctype html>
       <html lang="en">
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-          <meta name="theme-color" content="#5500eb">
           <link rel="preconnect" href="//static.cdn.com">
           <link rel="preconnect" href="//images.cdn.com">
           ${__LOCAL__ ? '' : `<link rel="stylesheet" href="${assetsManifest.main.css}">`}
           <link rel="preload" as="script" href="${assetsManifest.vendor.js}">
           <link rel="preload" as="script" href="${assetsManifest.main.js}">
-          <link rel="preload" as="script" href="${assetsManifest[`${route.name}`].js}">
-          <link rel="icon" type="image/x-icon" href="//images.cdn.com/favicon.ico">
-          ${__LOCAL__ ? '' : '<link rel="manifest" href="/manifest.json">'}`;
+          <link rel="preload" as="script" href="${assetsManifest[`${route.name}`].js}">`;
   },
 
-  bottom(app, head, initialState, assetsManifest, ip) {
+  lateChunk(app, head, initialState, assetsManifest, ip) {
     return `
+          <link rel="icon" type="image/x-icon" href="//images.cdn.com/favicon.ico">
+          ${__LOCAL__ ? '' : '<link rel="manifest" href="/manifest.json">'}
+          <meta name="theme-color" content="#5500eb">
           ${head.title.toString()}
           ${head.meta.toString()}
           ${head.link.toString()}
