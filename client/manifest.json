@@ -4,7 +4,7 @@
   "description": "An opinionated progressive web app boilerplate",
   "theme_color": "#5500eb",
   "background_color": "#ffffff",
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
   "icons": [{
