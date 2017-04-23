@@ -4,6 +4,7 @@
       "targets": {
         "uglify": true
       },
+      "loose": true,
       "modules": false,
       "useBuiltIns": true
     }],
