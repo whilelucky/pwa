@@ -103,6 +103,7 @@ module.exports = {
         cacheId: 'pwa',
         filename: 'serviceWorker.js',
         staticFileGlobsIgnorePatterns: [/\.map$/],
+        dontCacheBustUrlsMatching: /./,
         minify: true,
       }),
       new BundleAnalyzerPlugin({
