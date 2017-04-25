@@ -13,17 +13,18 @@ import assetsManifest from '../../build/client/assetsManifest.json';
 const PWA_SSR = process.env.PWA_SSR === 'true';
 
 const serverRenderedChunks = async (req, res, renderProps) => {
+  const route = renderProps.routes[renderProps.routes.length - 1];
   const store = configureStore();
 
   res.set('Content-Type', 'text/html');
 
-  const topHtmlChunk = html.top(assetsManifest);
-  res.write(topHtmlChunk);
+  const earlyChunk = html.earlyChunk(assetsManifest, route);
+  res.write(earlyChunk);
   res.flush();
 
   if (PWA_SSR) await loadOnServer({ ...renderProps, store });
 
-  const bottomHtmlChunk = html.bottom(
+  const lateChunk = html.lateChunk(
     PWA_SSR ? renderToString(
       <Provider store={store} key="provider">
         <ReduxAsyncConnect {...renderProps} />
@@ -34,7 +35,7 @@ const serverRenderedChunks = async (req, res, renderProps) => {
     assetsManifest,
     req.ip,
   );
-  res.write(bottomHtmlChunk);
+  res.write(lateChunk);
   res.flush();
 
   res.end();

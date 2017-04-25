@@ -8,7 +8,7 @@ export default {
     return `window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};`;
   },
 
-  serviceWorker: '"serviceWorker"in window.navigator&&window.navigator.serviceWorker.register("/serviceWorker.js").then(function(r){console.log("ServiceWorker registration successful with scope: ",r.scope)}).catch(function(e){console.error("ServiceWorker registration failed: ",e)});',
+  serviceWorker: '"serviceWorker"in window.navigator&&window.addEventListener("load",function(){window.navigator.serviceWorker.register("/serviceWorker.js").then(function(r){console.log("ServiceWorker registration successful with scope: ",r.scope)}).catch(function(e){console.error("ServiceWorker registration failed: ",e)})});',
 
   analytics(ip) {
     const allowAnalytics = !config.analyticsBlacklistedIps.some((blackListedIp) => blackListedIp === ip);
