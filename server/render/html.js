@@ -9,8 +9,6 @@ export default {
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-          <link rel="dns-prefetch" href="//static.cdn.com">
-          <link rel="dns-prefetch" href="//images.cdn.com">
           <link rel="preconnect" href="//static.cdn.com">
           <link rel="preconnect" href="//images.cdn.com">
           ${__LOCAL__ ? '' : `<link rel="stylesheet" href="${assetsManifest.main.css}">`}
