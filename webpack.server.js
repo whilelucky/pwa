@@ -38,12 +38,12 @@ module.exports = {
 
   module: {
     rules: ifProd([
-      { test: /\.css$/, use: ['isomorphic-style-loader', 'css-loader'] },
+      { test: /\.css$/, use: ['isomorphic-style-loader', 'css-loader', 'postcss-loader'] },
       { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
       { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'assets/images/[name].[hash:8].[ext]' } }] },
       { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'assets/fonts/[name].[hash:8].[ext]' } }] },
     ], [
-      { test: /\.css$/, use: ['isomorphic-style-loader', 'css-loader'] },
+      { test: /\.css$/, use: ['isomorphic-style-loader', 'css-loader', 'postcss-loader'] },
       { test: /\.js$/, exclude: /node_modules/, use: [{ loader: 'babel-loader', options: { cacheDirectory: 'babel_cache' } }] },
       { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'assets/images/[name].[ext]' } }] },
       { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'assets/fonts/[name].[ext]' } }] },
