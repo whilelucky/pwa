@@ -37,7 +37,7 @@ Wrapper.propTypes = {
 
 const beforeRouteEnter = [];
 
-const mapStateToProps = () => ({ });
+const mapStateToProps = false;
 
 const mapDispatchToProps = (dispatch) => ({
   analyticsActions: bindActionCreators(analyticsActionCreators, dispatch),
