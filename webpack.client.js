@@ -100,7 +100,7 @@ module.exports = {
       new SWPrecacheWebpackPlugin({
         cacheId: 'pwa',
         filename: 'serviceWorker.js',
-        staticFileGlobsIgnorePatterns: [/\.map$/],
+        staticFileGlobsIgnorePatterns: [/\.map$/, /manifest/i],
         dontCacheBustUrlsMatching: /./,
         minify: true,
       }),
