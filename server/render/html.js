@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
-import scripts from './scripts';
+import { assets, scripts } from './fragments';
 
 export default {
-  earlyChunk(assetsManifest, route) {
+  earlyChunk(route) {
     return `
       <!doctype html>
       <html lang="en">
@@ -11,14 +11,15 @@ export default {
           <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
           <link rel="preconnect" href="//static.cdn.com">
           <link rel="preconnect" href="//images.cdn.com">
-          ${__LOCAL__ ? '' : `<link rel="stylesheet" href="${assetsManifest.main.css}">`}
-          <link rel="preload" as="script" href="${assetsManifest.vendor.js}">
-          <link rel="preload" as="script" href="${assetsManifest.main.js}">
-          <link rel="preload" as="script" href="${assetsManifest[`${route.name}`].js}">`;
+          <link rel="preload" as="script" href="${assets.vendor.js}">
+          <link rel="preload" as="script" href="${assets.main.js}">
+          <link rel="preload" as="script" href="${assets[`${route.name}`].js}">`;
   },
 
-  lateChunk(app, head, initialState, assetsManifest, ip) {
+  lateChunk(app, head, initialState, route, ip) {
     return `
+          ${__LOCAL__ ? '' : `<style>${assets.main.styles}</style>`}
+          ${__LOCAL__ ? '' : `<style>${assets[`${route.name}`].styles}</style>`}
           <link rel="icon" type="image/x-icon" href="//images.cdn.com/favicon.ico">
           ${__LOCAL__ ? '' : '<link rel="manifest" href="/manifest.json">'}
           <meta name="theme-color" content="#5500eb">
@@ -31,9 +32,10 @@ export default {
           <script>${scripts.firstPaint}</script>
           <div id="root">${app}</div>
           <script>${scripts.initialState(initialState)}</script>
-          <script>${assetsManifest.webpackManifest.text}</script>
-          <script src="${assetsManifest.vendor.js}"></script>
-          <script src="${assetsManifest.main.js}"></script>
+          <script>${assets.webpackManifest.text}</script>
+          <script src="${assets.vendor.js}"></script>
+          <script src="${assets.main.js}"></script>
+          ${__LOCAL__ ? '' : `<script>${scripts.loadRemainingCSS(route)}</script>`}
           ${__LOCAL__ ? '' : `<script>${scripts.serviceWorker}</script>`}
           <script>${scripts.analytics(ip)}</script>
         </body>

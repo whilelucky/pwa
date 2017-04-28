@@ -19,8 +19,9 @@ module.exports = {
   cache: ifProd(false, true),
 
   entry: {
-    main: ['./client/index.js'],
-    vendor: ['./client/vendor.js'],
+    main: './client/index.js',
+    vendor: './client/vendor.js',
+    landing: './client/containers/LandingPage/LandingPage.js',
   },
 
   output: {
@@ -95,10 +96,7 @@ module.exports = {
           screw_ie8: true,
         },
       }),
-      new ExtractTextPlugin({
-        filename: 'assets/css/[name].[contenthash:8].css',
-        allChunks: true,
-      }),
+      new ExtractTextPlugin('assets/css/[name].[contenthash:8].css'),
       new SWPrecacheWebpackPlugin({
         cacheId: 'pwa',
         filename: 'serviceWorker.js',

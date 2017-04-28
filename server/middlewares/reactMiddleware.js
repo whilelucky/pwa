@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React from 'react';
 import Helmet from 'react-helmet';
 import { renderToString } from 'react-dom/server';
@@ -8,7 +7,6 @@ import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
 import html from '../render/html';
 import configureStore from '../../client/redux/configureStore';
 import routes from '../../client/routes';
-import assetsManifest from '../../build/client/assetsManifest.json';
 
 const PWA_SSR = process.env.PWA_SSR === 'true';
 
@@ -18,7 +16,7 @@ const serverRenderedChunks = async (req, res, renderProps) => {
 
   res.set('Content-Type', 'text/html');
 
-  const earlyChunk = html.earlyChunk(assetsManifest, route);
+  const earlyChunk = html.earlyChunk(route);
   res.write(earlyChunk);
   res.flush();
 
@@ -32,7 +30,7 @@ const serverRenderedChunks = async (req, res, renderProps) => {
     ) : '',
     Helmet.rewind(),
     store.getState(),
-    assetsManifest,
+    route,
     req.ip,
   );
   res.write(lateChunk);
