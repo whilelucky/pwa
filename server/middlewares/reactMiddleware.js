@@ -28,7 +28,7 @@ const serverRenderedChunks = async (req, res, renderProps) => {
         <ReduxAsyncConnect {...renderProps} />
       </Provider>,
     ) : '',
-    Helmet.rewind(),
+    Helmet.renderStatic(),
     store.getState(),
     route,
     req.ip,

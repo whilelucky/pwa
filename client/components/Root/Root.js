@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { ReduxAsyncConnect } from 'redux-connect';
