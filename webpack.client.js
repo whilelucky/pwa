@@ -58,6 +58,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new CleanWebpackPlugin(['./build/client']),
     new CopyWebpackPlugin([
+      { from: './client/manifest.json' },
       { from: './client/offline', to: './offline/' },
     ], { copyUnmodified: true }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
