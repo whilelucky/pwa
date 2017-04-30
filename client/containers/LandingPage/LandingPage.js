@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { asyncConnect } from 'redux-connect';
 import isEmpty from 'lodash/isEmpty';
@@ -38,8 +39,7 @@ LandingPage.propTypes = {
 const beforeRouteEnter = [{
   promise: ({ store: { dispatch, getState } }) => {
     const promise = isEmpty(getState().content.testimonials)
-      ? dispatch(contentActionCreators.getTestimonials(3))
-      : null;
+      ? dispatch(contentActionCreators.getTestimonials(3)) : null;
     return __BROWSER__ ? null : promise;
   },
 }];

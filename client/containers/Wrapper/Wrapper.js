@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { asyncConnect } from 'redux-connect';
@@ -37,7 +38,7 @@ Wrapper.propTypes = {
 
 const beforeRouteEnter = [];
 
-const mapStateToProps = () => ({ });
+const mapStateToProps = false;
 
 const mapDispatchToProps = (dispatch) => ({
   analyticsActions: bindActionCreators(analyticsActionCreators, dispatch),

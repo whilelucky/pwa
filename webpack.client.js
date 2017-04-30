@@ -13,15 +13,17 @@ const __NODE_ENV__ = process.env.NODE_ENV;
 const __PWA_ENV__ = process.env.PWA_ENV;
 const __PWA_PUBLIC_PATH__ = process.env.PWA_PUBLIC_PATH;
 
-const ifProd = (prodConfig, devConfig) =>
-  (__NODE_ENV__ === 'production' ? prodConfig : devConfig);
+const ifProd = (prodConfig, devConfig) => (
+  __NODE_ENV__ === 'production' ? prodConfig : devConfig
+);
 
 module.exports = {
   cache: ifProd(false, true),
 
   entry: {
-    main: ['./client/index.js'],
-    vendor: ['./client/vendor.js'],
+    main: './client/index.js',
+    vendor: './client/vendor.js',
+    landing: './client/containers/LandingPage/LandingPage.js',
   },
 
   output: {
@@ -99,14 +101,11 @@ module.exports = {
           screw_ie8: true,
         },
       }),
-      new ExtractTextPlugin({
-        filename: 'assets/css/[name].[contenthash:8].css',
-        allChunks: true,
-      }),
+      new ExtractTextPlugin('assets/css/[name].[contenthash:8].css'),
       new SWPrecacheWebpackPlugin({
         cacheId: 'pwa',
         filename: 'serviceWorker.js',
-        staticFileGlobsIgnorePatterns: [/\.map$/],
+        staticFileGlobsIgnorePatterns: [/\.map$/, /manifest/i],
         importScripts: ['offline/offline.js'],
         dontCacheBustUrlsMatching: /./,
         minify: true,
