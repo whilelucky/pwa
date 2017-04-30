@@ -12,8 +12,9 @@ const __NODE_ENV__ = process.env.NODE_ENV;
 const __PWA_ENV__ = process.env.PWA_ENV;
 const __PWA_PUBLIC_PATH__ = process.env.PWA_PUBLIC_PATH;
 
-const ifProd = (prodConfig, devConfig) =>
-  (__NODE_ENV__ === 'production' ? prodConfig : devConfig);
+const ifProd = (prodConfig, devConfig) => (
+  __NODE_ENV__ === 'production' ? prodConfig : devConfig
+);
 
 module.exports = {
   cache: ifProd(false, true),

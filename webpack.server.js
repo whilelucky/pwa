@@ -8,8 +8,9 @@ const __NODE_ENV__ = process.env.NODE_ENV;
 const __PWA_ENV__ = process.env.PWA_ENV;
 const __PWA_PUBLIC_PATH__ = process.env.PWA_PUBLIC_PATH;
 
-const ifProd = (prodConfig, devConfig) =>
-  (__NODE_ENV__ === 'production' ? prodConfig : devConfig);
+const ifProd = (prodConfig, devConfig) => (
+  __NODE_ENV__ === 'production' ? prodConfig : devConfig
+);
 
 module.exports = {
   entry: './server/index.js',
@@ -58,6 +59,10 @@ module.exports = {
       __BROWSER__: false,
       __PWA_ENV__: JSON.stringify(__PWA_ENV__),
       __LOCAL__: __PWA_ENV__ === 'local',
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      children: true,
+      minChunks: 2,
     }),
     ...ifProd([
       new webpack.LoaderOptionsPlugin({
