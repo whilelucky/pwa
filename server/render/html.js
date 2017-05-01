@@ -13,13 +13,13 @@ export default {
           <link rel="preconnect" href="//images.cdn.com">
           <link rel="preload" as="script" href="${assets.vendor.js}">
           <link rel="preload" as="script" href="${assets.main.js}">
-          <link rel="preload" as="script" href="${assets[`${route.name}`].js}">`;
+          ${!assets[route.name] ? '' : `<link rel="preload" as="script" href="${assets[`${route.name}`].js}">`}`;
   },
 
   lateChunk(app, head, initialState, route, ip) {
     return `
           ${__LOCAL__ ? '' : `<style>${assets.main.styles}</style>`}
-          ${__LOCAL__ ? '' : `<style>${assets[`${route.name}`].styles}</style>`}
+          ${__LOCAL__ || !assets[route.name] ? '' : `<style>${assets[`${route.name}`].styles}</style>`}
           <link rel="icon" type="image/x-icon" href="//images.cdn.com/favicon.ico">
           ${__LOCAL__ ? '' : '<link rel="manifest" href="/manifest.json">'}
           <meta name="theme-color" content="#5500eb">

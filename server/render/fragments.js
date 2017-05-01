@@ -9,7 +9,7 @@ export const assets = Object.keys(assetsManifest)
     [entry]: {
       ...assetsManifest[entry],
       styles: assetsManifest[entry].css
-        ? fs.readFileSync(`build/client/assets/css/${assetsManifest[entry].css.split('/').pop()}`, 'utf8')
+        ? fs.readFileSync(`build/client/css/${assetsManifest[entry].css.split('/').pop()}`, 'utf8')
         : undefined,
     },
   }), {});
