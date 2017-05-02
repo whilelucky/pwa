@@ -20,7 +20,7 @@
     "stop": "pm2 delete pm2.json && rimraf npm-debug.log* babel_cache",
     "prelocal": "mkdir -p ./build/server/ && touch ./build/server/index.js",
     "local": "PWA_ENV=local PWA_PUBLIC_PATH=http://localhost:8080/build/client/ PWA_SSR=false NODE_ENV=development PORT=8000 webpack-dashboard -- run-p local:*",
-    "local:client": "webpack-dev-server --config ./webpack.client.js --content-base ./build/client/ --hot --quiet",
+    "local:client": "webpack-dev-server --config ./webpack.client.js --hot",
     "local:server": "webpack --config ./webpack.server.js --watch",
     "local:serve": "pm2 start pm2.json --only pwa-local",
     "postlocal": "npm stop",

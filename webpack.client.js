@@ -123,4 +123,11 @@ module.exports = {
   ],
 
   devtool: ifProd('hidden-source-map', 'inline-source-map'),
+
+  devServer: {
+    contentBase: path.resolve('./build/client'),
+    headers: { 'Access-Control-Allow-Origin': '*' },
+    overlay: true,
+    quiet: true,
+  },
 };
