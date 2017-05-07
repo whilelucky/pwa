@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import qs from 'qs';
+import queryString from 'query-string';
 import config from '../config';
 
 const handleResponse = (response) => (
@@ -22,9 +22,9 @@ const fireRequest = (method, url, data) => {
 };
 
 export default {
-  get(url, queryObj) {
-    const queryString = `?${qs.stringify(queryObj)}`;
-    return fireRequest('GET', `${url}${queryString}`);
+  get(url, query) {
+    const qs = queryString.stringify(query, { arrayFormat: 'index' });
+    return fireRequest('GET', `${url}?${qs}`);
   },
 
   post(url, data) {

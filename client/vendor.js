@@ -4,7 +4,7 @@ import 'isomorphic-fetch';
 import 'moment';
 import 'preact-compat';
 import 'preact';
-import 'qs';
+import 'query-string';
 import 'react-helmet';
 import 'react-redux';
 import 'react-router';
