@@ -75,7 +75,6 @@ module.exports = {
     new AssetsPlugin({
       filename: 'assetsManifest.json',
       path: path.resolve('./build/client'),
-      includeManifest: 'webpackManifest',
       prettyPrint: true,
     }),
     ...ifProd([
@@ -106,7 +105,7 @@ module.exports = {
       new SWPrecacheWebpackPlugin({
         cacheId: 'pwa',
         filename: 'serviceWorker.js',
-        staticFileGlobsIgnorePatterns: [/\.map$/, /manifest/i],
+        staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],
         importScripts: ['offline/offline.1a2b3c4d.js'],
         dontCacheBustUrlsMatching: /./,
         minify: true,

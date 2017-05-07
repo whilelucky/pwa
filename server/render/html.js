@@ -11,6 +11,7 @@ export default {
           <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
           <link rel="preconnect" href="//static.cdn.com">
           <link rel="preconnect" href="//images.cdn.com">
+          <link rel="preload" as="script" href="${assets.webpackManifest.js}">
           <link rel="preload" as="script" href="${assets.vendor.js}">
           <link rel="preload" as="script" href="${assets.main.js}">
           ${!assets[route.name] ? '' : `<link rel="preload" as="script" href="${assets[`${route.name}`].js}">`}`;
@@ -32,7 +33,7 @@ export default {
           <script>${scripts.firstPaint}</script>
           <div id="root">${app}</div>
           <script>${scripts.initialState(initialState)}</script>
-          <script>${assets.webpackManifest.text}</script>
+          <script src="${assets.webpackManifest.js}"></script>
           <script src="${assets.vendor.js}"></script>
           <script src="${assets.main.js}"></script>
           ${__LOCAL__ ? '' : `<script>${scripts.loadRemainingCSS(route)}</script>`}
