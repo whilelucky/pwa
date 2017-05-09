@@ -30,8 +30,8 @@ export default {
           ${head.script.toString()}
         </head>
         <body>
-          <script>${scripts.firstPaint}</script>
           <div id="root">${app}</div>
+          <script>${scripts.firstPaint}</script>
           <script>${scripts.initialState(initialState)}</script>
           <script src="${assets.webpackManifest.js}"></script>
           <script src="${assets.vendor.js}"></script>
