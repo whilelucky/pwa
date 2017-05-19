@@ -19,28 +19,36 @@ class Testimonials extends Component {
     const { active } = this.state;
 
     return testimonials.length ? (
-      <section className="Testimonials">
-        {loadTime ? (<small>Took: {loadTime}</small>) : null}
-        <Row className="list" between>
+      <section className="testimonials">
+        {
+          loadTime ? (
+            <small>Took: {loadTime}</small>
+          ) : null
+        }
+        <Row className="testimonials__list" between>
           {
             testimonials.map(({ name, picture }, i) => (
               <Col key={name.first}>
                 <img
-                  className={cx('img', { 'img--active': active === i })}
+                  className={cx('testimonials__img', {
+                    'testimonials__img--active': active === i,
+                  })}
                   src={picture.medium}
                   alt={name.first}
                   onClick={this.showTestimonial(i)}
                 />
-                <div className={cx('subheading-2 name', { 'name--visible': active === i })}>
+                <div
+                  className={cx('testimonials__name', {
+                    'testimonials__name--visible': active === i,
+                  })}
+                >
                   {name.first}
                 </div>
               </Col>
             ))
           }
         </Row>
-        <p className="text-1">
-          {testimonials[active].location.street}
-        </p>
+        <p>{testimonials[active].location.street}</p>
       </section>
     ) : (null);
   }

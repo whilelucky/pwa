@@ -22,7 +22,7 @@ class Wrapper extends Component {
     const { children } = this.props;
 
     return (
-      <div className="Wrapper">
+      <div className="wrapper">
         <Helmet title="PWA" />
         {children}
       </div>

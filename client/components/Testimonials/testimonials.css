@@ -1,16 +1,16 @@
 @import '../../assets/css/variables.css';
 
-.Testimonials {
+.testimonials {
   margin-top: 5rem;
 
-  & .list {
+  &__list {
     margin-top: 1.6rem;
     margin-bottom: 1.6rem;
   }
 
-  & .img {
+  &__img {
     border-radius: 50%;
-    border: 0.3rem solid transparent;
+    border: 3px solid transparent;
     padding: 0.4rem;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
@@ -20,7 +20,7 @@
     }
   }
 
-  & .name {
+  &__name {
     visibility: hidden;
     color: var(--color-secondary);
     margin-top: 0.8rem;

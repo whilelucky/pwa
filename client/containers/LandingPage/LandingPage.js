@@ -22,9 +22,9 @@ class LandingPage extends Component {
       content: { testimonials },
     } = this.props;
     return (
-      <div className="Landing-Page">
-        <h1 className="heading-1">PWA</h1>
-        <div className="subheading-2">An opinionated progressive web app boilerplate</div>
+      <div className="landing-page">
+        <h1>PWA</h1>
+        <p>An opinionated progressive web app boilerplate</p>
         <Testimonials testimonials={testimonials} />
       </div>
     );

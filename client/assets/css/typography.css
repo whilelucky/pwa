@@ -18,7 +18,7 @@ ol {
 }
 
 p {
-  margin: 0 0 0.8rem;
+  margin: 0 0 8px;
 }
 
 h1,
@@ -27,64 +27,5 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.4rem;
-}
-
-.heading-1 {
-  font-size: 2.1rem;
-  color: var(--color-secondary);
-}
-
-.heading-2 {
-  font-size: 2.1rem;
-  color: var(--color-secondary);
-}
-
-.heading-3 {
-  font-size: 2.1rem;
-  color: var(--color-tertiary);
-}
-
-.subheading-1 {
-  font-size: 1.8rem;
-  color: var(--color-secondary);
-}
-
-.subheading-2 {
-  font-size: 1.4rem;
-  color: var(--color-secondary);
-}
-
-.subheading-3 {
-  font-size: 1.4rem;
-  color: var(--color-tertiary);
-}
-
-.subheading-4 {
-  font-size: 1.4rem;
-  color: var(--color-tertiary);
-}
-
-.text-1 {
-  font-size: 1.6rem;
-  color: var(--color-tertiary);
-}
-
-.text-2 {
-  font-size: 1.4rem;
-  color: var(--color-tertiary);
-}
-
-.text-primary {
-  color: var(--color-primary);
-}
-
-.text-error {
-  color: var(--color-error);
-}
-
-.text-link {
-  font-size: 1.4rem;
-  color: var(--color-link);
-  cursor: pointer;
+  margin: 0 0 4px;
 }
