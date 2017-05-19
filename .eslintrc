@@ -4,21 +4,22 @@
   "env": {
     "browser": true,
     "node": true,
-    "jest": true,
+    "jest": true
   },
   "globals": {
     "__BROWSER__": false,
     "__PWA_ENV__": false,
-    "__LOCAL__": false,
+    "__LOCAL__": false
   },
   "rules": {
     "arrow-parens": ["error", "always"],
     "import/no-named-default": ["off"],
+    "jsx-a11y/no-noninteractive-element-interactions": ["off"],
     "jsx-a11y/no-static-element-interactions": ["off"],
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0, "maxBOF": 0 }],
     "no-underscore-dangle": ["off"],
     "react/forbid-prop-types": ["error", { "forbid": ["any"] }],
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
-    "react/require-default-props": ["off"],
-  },
+    "react/require-default-props": ["off"]
+  }
 }
