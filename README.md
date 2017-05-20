@@ -1,5 +1,5 @@
 # Progressive Web App
-> A pwa boilerplate, to hit the ground running in terms of a large scale application.
+> An opinionated progressive web app boilerplate, to hit the ground running.
 
 ## Setup
 ```
