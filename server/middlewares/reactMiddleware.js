@@ -4,9 +4,9 @@ import { renderToString } from 'react-dom/server';
 import { match } from 'react-router';
 import { Provider } from 'react-redux';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
-import html from '../render/html';
 import configureStore from '../../client/redux/configureStore';
 import routes from '../../client/routes';
+import html from '../render/html';
 
 const PWA_SSR = process.env.PWA_SSR === 'true';
 
@@ -31,12 +31,10 @@ const serverRenderedChunks = async (req, res, renderProps) => {
     Helmet.renderStatic(),
     store.getState(),
     route,
-    req.ip,
+    req,
   );
-  res.write(lateChunk);
-  res.flush();
 
-  res.end();
+  res.end(lateChunk);
 };
 
 export default (req, res) => {
@@ -47,10 +45,10 @@ export default (req, res) => {
     if (error) {
       return res.status(500).send(error.message);
     } else if (redirectLocation) {
-      return res.redirect(redirectLocation.pathname + redirectLocation.search);
-    } else if (!renderProps) {
-      return res.status(404).send('404: Not Found');
+      return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+    } else if (renderProps) {
+      return serverRenderedChunks(req, res, renderProps);
     }
-    return serverRenderedChunks(req, res, renderProps);
+    return res.status(404).send('404: Not Found');
   });
 };
