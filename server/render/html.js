@@ -21,9 +21,17 @@ export default {
     return `
           ${__LOCAL__ ? '' : `<style>${assets.main.styles}</style>`}
           ${__LOCAL__ || !assets[route.name] ? '' : `<style>${assets[route.name].styles}</style>`}
-          <link rel="icon" type="image/x-icon" href="//images.cdn.com/favicon.ico">
           ${__LOCAL__ ? '' : '<link rel="manifest" href="/manifest.json">'}
+          <meta name="mobile-web-app-capable" content="yes">
+          <meta name="apple-mobile-web-app-capable" content="yes">
+          <meta name="application-name" content="PWA">
+          <meta name="apple-mobile-web-app-title" content="PWA">
           <meta name="theme-color" content="#5500eb">
+          <meta name="msapplication-navbutton-color" content="#5500eb">
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+          <meta name="msapplication-starturl" content="/">
+          <link rel="icon" type="image/png" sizes="256x256" href="http://www.fancyicons.com/free-icons/232/cinema/png/256/the_flash_sign_256.png">
+          <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="http://www.fancyicons.com/free-icons/232/cinema/png/256/the_flash_sign_256.png">
           ${head.title.toString()}
           ${head.meta.toString()}
           ${head.link.toString()}
@@ -39,6 +47,7 @@ export default {
           ${__LOCAL__ ? '' : `<script>${scripts.loadRemainingCSS(route)}</script>`}
           ${__LOCAL__ ? '' : `<script>${scripts.serviceWorker}</script>`}
           <script>${scripts.analytics(req.ip)}</script>
+          <script>${scripts.a2hsListener}</script>
         </body>
       </html>`;
   },

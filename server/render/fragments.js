@@ -37,4 +37,6 @@ export const scripts = {
       ? `!function(){var a=window.analytics=window.analytics||[];if(!a.initialize)if(a.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{a.invoked=!0,a.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"],a.factory=function(r){return function(){var o=Array.prototype.slice.call(arguments);return o.unshift(r),a.push(o),a}};for(var r=0;r<a.methods.length;r++){var o=a.methods[r];a[o]=a.factory(o)}a.load=function(a){var r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+a+"/analytics.min.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(r,o)},a.SNIPPET_VERSION="3.1.0",a.load("${config.segmentAPIKey}")}}();`
       : null;
   },
+
+  a2hsListener: 'window.addEventListener("beforeinstallprompt",function(e){console.log("beforeinstallprompt Event fired"),e.userChoice.then(function(e){"dismissed"==e.outcome?(console.log("User cancelled home screen install"),window.analytics&&window.analytics.track("Add to Homescreen",{success:!1})):(console.log("User added to home screen"),window.analytics&&window.analytics.track("Add to Homescreen",{success:!0}))})});',
 };

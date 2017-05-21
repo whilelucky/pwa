@@ -8,8 +8,8 @@
   "display": "standalone",
   "orientation": "portrait",
   "icons": [{
-    "src": "https://storage.googleapis.com/pwa-directory.appspot.com/128_5755364691673088.png",
-    "sizes": "192x192",
+    "src": "http://www.fancyicons.com/free-icons/232/cinema/png/256/the_flash_sign_256.png",
+    "sizes": "256x256",
     "type": "image/png"
   }]
 }
