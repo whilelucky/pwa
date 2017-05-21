@@ -2,13 +2,7 @@ import fetch from 'isomorphic-fetch';
 import queryString from 'query-string';
 import config from '../config';
 
-const handleResponse = (response) => (
-  response.ok
-    ? response.json()
-    : response.json().then((error) => Promise.reject(error))
-);
-
-const fireRequest = (method, url, data) => {
+const fireRequest = async (method, url, data) => {
   const fullUrl = `${config.apiUrl}${url}`;
   const options = {
     method,
@@ -18,7 +12,10 @@ const fireRequest = (method, url, data) => {
       'Content-Type': 'application/json',
     },
   };
-  return fetch(fullUrl, options).then(handleResponse);
+
+  const response = await fetch(fullUrl, options);
+  const json = await response.json();
+  return response.ok ? json : Promise.reject(json);
 };
 
 export default {
