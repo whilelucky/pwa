@@ -4,8 +4,8 @@ import config from '../../config';
 import assetsManifest from '../../build/client/assetsManifest.json';
 
 export const assets = Object.keys(assetsManifest)
-  .reduce((o, entry) => ({
-    ...o,
+  .reduce((obj, entry) => ({
+    ...obj,
     [entry]: {
       ...assetsManifest[entry],
       styles: assetsManifest[entry].css
@@ -26,7 +26,7 @@ export const scripts = {
   loadRemainingCSS(route) {
     return Object.keys(assetsManifest)
       .filter((entry) => assetsManifest[entry].css && entry !== route.name && entry !== 'main')
-      .reduce((s, entry) => `${s}loadCSS("${assetsManifest[entry].css}");`, this.loadCSS);
+      .reduce((str, entry) => `${str}loadCSS("${assetsManifest[entry].css}");`, this.loadCSS);
   },
 
   serviceWorker: '"serviceWorker"in window.navigator&&window.addEventListener("load",function(){window.navigator.serviceWorker.register("/serviceWorker.js").then(function(r){console.log("ServiceWorker registration successful with scope: ",r.scope)}).catch(function(e){console.error("ServiceWorker registration failed: ",e)})});',

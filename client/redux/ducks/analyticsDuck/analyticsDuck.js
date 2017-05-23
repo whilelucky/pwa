@@ -8,8 +8,8 @@ export const recordPerformance = (pathname) => (dispatch) => {
     window.performance
     && window.performance.getEntriesByType
     && window.performance.getEntriesByType('mark')
-      .reduce((properties, mark) => ({
-        ...properties,
+      .reduce((obj, mark) => ({
+        ...obj,
         [mark.name]: mark.startTime,
       }), {})
   ) || {};
