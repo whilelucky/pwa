@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import 'classnames';
 import 'isomorphic-fetch';
+import 'lodash/isEmpty';
 import 'moment';
 import 'preact';
 import 'preact-compat';
