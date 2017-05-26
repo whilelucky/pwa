@@ -4,12 +4,12 @@ import Helmet from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { asyncConnect } from 'redux-connect';
 import { analyticsActionCreators } from '../../redux/ducks';
-import { helpers } from '../../../utils';
+import { performanceMark } from '../../../services/utils';
 import './wrapper.css';
 
 class Wrapper extends Component {
   componentDidMount() {
-    helpers.performanceMark('firstInteraction');
+    performanceMark('firstInteraction');
     this.captureAnalytics();
   }
 
