@@ -1,38 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import { asyncConnect } from 'redux-connect';
 import isEmpty from 'lodash/isEmpty';
-import { contentActionCreators, analyticsActionCreators } from '../../redux/ducks';
+import { contentActionCreators } from '../../redux/ducks';
 import Testimonials from '../../components/Testimonials/Testimonials';
 import './landingPage.css';
 
-class LandingPage extends Component {
-  componentDidMount() {
-    this.captureAnalytics();
-  }
-
-  captureAnalytics = () => {
-    const { analyticsActions } = this.props;
-    analyticsActions.pageViewed('Landing');
-  }
-
-  render() {
-    const {
-      content: { testimonials },
-    } = this.props;
-    return (
-      <div className="landing-page">
-        <h1>PWA</h1>
-        <p>An opinionated progressive web app boilerplate</p>
-        <Testimonials testimonials={testimonials} />
-      </div>
-    );
-  }
-}
+const LandingPage = ({
+  content: { testimonials },
+}) => (
+  <div className="landing-page">
+    <h1>PWA</h1>
+    <p>An opinionated progressive web app boilerplate</p>
+    <Testimonials testimonials={testimonials} />
+  </div>
+);
 
 LandingPage.propTypes = {
-  analyticsActions: PropTypes.object.isRequired,
   content: PropTypes.object.isRequired,
 };
 
@@ -48,12 +32,7 @@ const mapStateToProps = (state) => ({
   content: state.content,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  analyticsActions: bindActionCreators(analyticsActionCreators, dispatch),
-});
-
 export default asyncConnect(
   beforeRouteEnter,
   mapStateToProps,
-  mapDispatchToProps,
 )(LandingPage);

@@ -31,7 +31,6 @@ const serverRenderedChunks = async (req, res, renderProps) => {
     Helmet.renderStatic(),
     store.getState(),
     route,
-    req,
   );
 
   res.end(lateChunk);

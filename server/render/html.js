@@ -17,7 +17,7 @@ export default {
           ${!assets[route.name] ? '' : `<link rel="preload" as="script" href="${assets[route.name].js}">`}`;
   },
 
-  lateChunk(app, head, initialState, route, req) {
+  lateChunk(app, head, initialState, route) {
     return `
           ${__LOCAL__ ? '' : `<style>${assets.main.styles}</style>`}
           ${__LOCAL__ || !assets[route.name] ? '' : `<style>${assets[route.name].styles}</style>`}
@@ -46,8 +46,6 @@ export default {
           <script src="${assets.main.js}"></script>
           ${__LOCAL__ ? '' : `<script>${scripts.loadRemainingCSS(route)}</script>`}
           ${__LOCAL__ ? '' : `<script>${scripts.serviceWorker}</script>`}
-          <script>${scripts.analytics(req.ip)}</script>
-          <script>${scripts.a2hsListener}</script>
         </body>
       </html>`;
   },

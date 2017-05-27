@@ -12,5 +12,4 @@ import 'react-router';
 import 'redux';
 import 'redux-connect';
 import 'redux-pack';
-import 'redux-segment';
 import 'redux-thunk';
