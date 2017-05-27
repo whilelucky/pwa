@@ -5,15 +5,15 @@
 }
 
 .text {
-  &--center {
+  &-center {
     text-align: center;
   }
 
-  &--left {
-    text-align: right;
+  &-left {
+    text-align: left;
   }
 
-  &--right {
+  &-right {
     text-align: right;
   }
 }

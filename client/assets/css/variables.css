@@ -9,12 +9,7 @@
   --color-link: #0d0;
 }
 
-/* Color Variants */
-:root {
-  --color-primary-hover: #93d0c8;
-}
-
-/* Others */
+/* Shadows */
 :root {
   --shadow-primary: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
