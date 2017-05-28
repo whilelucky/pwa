@@ -27,10 +27,10 @@
     "development": "npm install && run-s development:*",
     "development:build": "PWA_ENV=development PWA_PUBLIC_PATH=/build/client/ NODE_ENV=production run-s build:*",
     "development:start": "PWA_SSR=true NODE_ENV=production PORT=1337 pm2 start pm2.json --only pwa",
-    "staging": "npm install && run-s staging:*",
+    "staging": "npm install --no-optional && run-s staging:*",
     "staging:build": "PWA_ENV=staging PWA_PUBLIC_PATH=//staging.cdn.com/build/client/ NODE_ENV=production run-s build:*",
     "staging:start": "PWA_SSR=true NODE_ENV=production PORT=1337 pm2 start pm2.json --only pwa",
-    "production": "npm install && run-s production:*",
+    "production": "npm install --no-optional && run-s production:*",
     "production:build": "PWA_ENV=production PWA_PUBLIC_PATH=//production.cdn.com/build/client/ NODE_ENV=production run-s build:*",
     "production:start": "PWA_SSR=true NODE_ENV=production PORT=1337 pm2 start pm2.json --only pwa",
     "build:client": "webpack --config ./webpack.client.js --progress",
@@ -64,7 +64,6 @@
     "npm-run-all": "4.0.2",
     "pm2": "2.4.6",
     "postcss-loader": "1.3.3",
-    "pre-commit": "1.2.2",
     "rimraf": "2.6.1",
     "style-loader": "0.18.1",
     "stylelint": "7.10.1",
@@ -111,6 +110,9 @@
     "webpack-bundle-analyzer": "2.8.2",
     "webpack-dashboard": "0.4.0",
     "webpack-node-externals": "1.6.0"
+  },
+  "optionalDependencies": {
+    "pre-commit": "1.2.2"
   },
   "jest": {
     "globals": {
