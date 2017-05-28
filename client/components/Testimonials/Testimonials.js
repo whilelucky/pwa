@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Row, Col } from '../Flex';
-import LoaderHOC from '../hocs/LoaderHOC/LoaderHOC';
+import LoaderHOC from '../LoaderHOC/LoaderHOC';
 import './testimonials.css';
 
 class Testimonials extends Component {
