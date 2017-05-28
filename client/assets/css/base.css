@@ -10,14 +10,7 @@ body {
   color: var(--color-tertiary);
   font-size: 1.4em;
   font-weight: 400;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    "Roboto",
-    "Droid Sans",
-    "Helvetica Neue",
-    sans-serif;
+  font-family: system-ui;
 }
 
 *,
