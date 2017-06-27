@@ -69,6 +69,7 @@ module.exports = {
       minChunks: Infinity,
     }),
     new webpack.optimize.CommonsChunkPlugin({
+      name: 'main',
       children: true,
       minChunks: 2,
     }),
