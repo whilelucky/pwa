@@ -1,8 +1,7 @@
-/* eslint-disable global-require */
 module.exports = {
-  plugins: [
-    require('postcss-import')(),
-    require('postcss-url')(),
-    require('postcss-cssnext')(),
-  ],
+  plugins: {
+    'postcss-import': {},
+    'postcss-url': {},
+    'postcss-cssnext': {},
+  },
 };
