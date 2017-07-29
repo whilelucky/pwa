@@ -18,7 +18,7 @@ app.use('/build/client', express.static('build/client'));
 app.use('/serviceWorker.js', express.static('build/client/serviceWorker.js'));
 app.use('/manifest.json', express.static('build/client/manifest.json'));
 app.use(slashes(true));
-app.use(reactMiddleware);
+app.use('*', reactMiddleware);
 
 app.listen(PORT, () => {
   // eslint-disable-next-line

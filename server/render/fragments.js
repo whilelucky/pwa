@@ -14,8 +14,6 @@ export const assets = Object.keys(assetsManifest)
   }), {});
 
 export const scripts = {
-  firstPaint: 'performance&&performance.mark&&performance.mark("firstPaint");',
-
   initialState(initialState) {
     return `window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};`;
   },
