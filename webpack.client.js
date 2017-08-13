@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const DashboardPlugin = require('webpack-dashboard/plugin');
@@ -23,7 +23,6 @@ module.exports = {
   entry: {
     main: './client/index.js',
     vendor: './client/vendor.js',
-    landing: './client/containers/LandingPage/LandingPage.js',
   },
 
   output: {
@@ -43,7 +42,7 @@ module.exports = {
   module: {
     rules: ifProd([
       { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract({ fallback: ['style-loader'], use: [{ loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader'] }) },
+      { test: /\.css$/, loader: ExtractCssChunks.extract({ use: [{ loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader'] }) },
       { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'images/[name].[hash:8].[ext]' } }] },
       { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'fonts/[name].[hash:8].[ext]' } }] },
     ], [
@@ -99,7 +98,7 @@ module.exports = {
           screw_ie8: true,
         },
       }),
-      new ExtractTextPlugin('css/[name].[contenthash:8].css'),
+      new ExtractCssChunks('css/[name].[contenthash:8].css'),
       new CopyWebpackPlugin([
         { from: './client/manifest.json' },
         { from: './client/offline', to: 'offline/[name].1a2b3c4d.[ext]' },
