@@ -12,13 +12,10 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const __NODE_ENV__ = process.env.NODE_ENV;
 const __PWA_ENV__ = process.env.PWA_ENV;
 const __PWA_PUBLIC_PATH__ = process.env.PWA_PUBLIC_PATH;
-
-const ifProd = (prodConfig, devConfig) => (
-  __NODE_ENV__ === 'production' ? prodConfig : devConfig
-);
+const isProd = __NODE_ENV__ === 'production';
 
 module.exports = {
-  cache: ifProd(false, true),
+  cache: !isProd,
 
   entry: {
     main: './client/index.js',
@@ -28,8 +25,8 @@ module.exports = {
   output: {
     path: path.resolve('./build/client'),
     publicPath: __PWA_PUBLIC_PATH__,
-    filename: ifProd('js/[name].[chunkhash:8].js', 'js/[name].js'),
-    chunkFilename: ifProd('js/[name].[chunkhash:8].js', 'js/[name].js'),
+    filename: isProd ? 'js/[name].[chunkhash:8].js' : 'js/[name].js',
+    chunkFilename: isProd ? 'js/[name].[chunkhash:8].js' : 'js/[name].js',
   },
 
   resolve: {
@@ -40,17 +37,17 @@ module.exports = {
   },
 
   module: {
-    rules: ifProd([
+    rules: isProd ? [
       { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
       { test: /\.css$/, loader: ExtractCssChunks.extract({ use: [{ loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader'] }) },
       { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'images/[name].[hash:8].[ext]' } }] },
       { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'fonts/[name].[hash:8].[ext]' } }] },
-    ], [
+    ] : [
       { test: /\.js$/, exclude: /node_modules/, use: [{ loader: 'babel-loader', options: { cacheDirectory: 'babel_cache' } }] },
       { test: /\.css$/, use: ['style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader'] },
       { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'images/[name].[ext]' } }] },
       { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'fonts/[name].[ext]' } }] },
-    ]),
+    ],
   },
 
   plugins: [
@@ -58,7 +55,7 @@ module.exports = {
     new CleanWebpackPlugin(['./build/client']),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': ifProd('"production"', '"development"'),
+      'process.env.NODE_ENV': isProd ? '"production"' : '"development"',
       __BROWSER__: true,
       __PWA_ENV__: JSON.stringify(__PWA_ENV__),
       __LOCAL__: __PWA_ENV__ === 'local',
@@ -77,7 +74,7 @@ module.exports = {
       path: path.resolve('./build/client'),
       prettyPrint: true,
     }),
-    ...ifProd([
+    ...(isProd ? [
       new webpack.LoaderOptionsPlugin({
         minimize: true,
         debug: false,
@@ -116,13 +113,13 @@ module.exports = {
         openAnalyzer: false,
         reportFilename: 'bundle-analysis.html',
       }),
-    ], [
+    ] : [
       new webpack.NamedModulesPlugin(),
       new DashboardPlugin(),
     ]),
   ],
 
-  devtool: ifProd('hidden-source-map', 'inline-source-map'),
+  devtool: isProd ? 'hidden-source-map' : 'inline-source-map',
 
   devServer: {
     contentBase: path.resolve('./build/client'),
