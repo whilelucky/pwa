@@ -14,10 +14,6 @@ export const assets = Object.keys(assetsManifest)
   }), {});
 
 export const scripts = {
-  initialState(initialState) {
-    return `window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};`;
-  },
-
   loadCSS: 'var loadCSS=function(e,n,t){function r(e){return d.body?e():void setTimeout(function(){r(e)})}function i(){a.addEventListener&&a.removeEventListener("load",i),a.media=t||"all"}var o,d=window.document,a=d.createElement("link");if(n)o=n;else{var l=d.getElementsByTagName("style");o=l[l.length-1]}var s=d.styleSheets;a.rel="stylesheet",a.href=e,a.media="only x",r(function(){o.parentNode.insertBefore(a,n?o:o.nextSibling)});var f=function(e){for(var n=a.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){f(e)})};return a.addEventListener&&a.addEventListener("load",i),a.onloadcssdefined=f,f(i),a};',
 
   loadRemainingCSS(route) {

@@ -39,7 +39,7 @@ export default {
         </head>
         <body>
           <div id="root">${app}</div>
-          <script>${scripts.initialState(initialState)}</script>
+          <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}</script>
           <script src="${assets.webpackManifest.js}"></script>
           <script src="${assets.vendor.js}"></script>
           <script src="${assets.main.js}"></script>
