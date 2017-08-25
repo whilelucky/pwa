@@ -9,10 +9,9 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
-const __NODE_ENV__ = process.env.NODE_ENV;
 const __PWA_ENV__ = process.env.PWA_ENV;
 const __PWA_PUBLIC_PATH__ = process.env.PWA_PUBLIC_PATH;
-const isProd = __NODE_ENV__ === 'production';
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   cache: !isProd,

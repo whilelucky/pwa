@@ -4,10 +4,9 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const __NODE_ENV__ = process.env.NODE_ENV;
 const __PWA_ENV__ = process.env.PWA_ENV;
 const __PWA_PUBLIC_PATH__ = process.env.PWA_PUBLIC_PATH;
-const isProd = __NODE_ENV__ === 'production';
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: './server/index.js',
