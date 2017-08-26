@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import { assets, scripts } from './fragments';
+import assetsManifest from '../../build/client/assetsManifest.json';
 
 export default {
   earlyChunk(route) {
@@ -20,7 +21,7 @@ export default {
   lateChunk(app, head, initialState, route) {
     return `
           ${__LOCAL__ ? '' : `<style>${assets.main.styles}</style>`}
-          ${__LOCAL__ || !assets[route.name] ? '' : `<style>${assets[route.name].styles}</style>`}
+          ${__LOCAL__ || !assets[route.name] ? '' : `<style id="${route.name}.css">${assets[route.name].styles}</style>`}
           ${__LOCAL__ ? '' : '<link rel="manifest" href="/manifest.json">'}
           <meta name="mobile-web-app-capable" content="yes">
           <meta name="apple-mobile-web-app-capable" content="yes">
@@ -40,10 +41,10 @@ export default {
         <body>
           <div id="root">${app}</div>
           <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}</script>
+          <script>window.__ASSETS_MANIFEST__ = ${JSON.stringify(assetsManifest)}</script>
           <script src="${assets.webpackManifest.js}"></script>
           <script src="${assets.vendor.js}"></script>
           <script src="${assets.main.js}"></script>
-          ${__LOCAL__ ? '' : `<script>${scripts.loadRemainingCSS(route)}</script>`}
           ${__LOCAL__ ? '' : `<script>${scripts.serviceWorker}</script>`}
         </body>
       </html>`;
