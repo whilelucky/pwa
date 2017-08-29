@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable max-len, import/no-unresolved */
 import { assets, scripts } from './fragments';
 import assetsManifest from '../../build/client/assetsManifest.json';
 
