@@ -1,12 +1,12 @@
 export default (chunkName) => {
-  if (
-    !__BROWSER__
-    || !(chunkName in window.__ASSETS_MANIFEST__)
-    || !window.__ASSETS_MANIFEST__[chunkName].css
-  ) {
-    return Promise.reject(new Error(`css chunk not found: ${chunkName}`));
-  } else if (document.getElementById(`${chunkName}.css`)) {
+  if (!__BROWSER__) {
     return Promise.resolve();
+  } else if (!(chunkName in window.__ASSETS_MANIFEST__)) {
+    return Promise.reject(`chunk not found: ${chunkName}`);
+  } else if (!window.__ASSETS_MANIFEST__[chunkName].css) {
+    return Promise.resolve(`chunk css does not exist: ${chunkName}`);
+  } else if (document.getElementById(`${chunkName}.css`)) {
+    return Promise.resolve(`css chunk already loaded: ${chunkName}`);
   }
 
   const head = document.getElementsByTagName('head')[0];
@@ -24,7 +24,7 @@ export default (chunkName) => {
       link.onerror = null;
       link.media = 'all';
       clearTimeout(timeout);
-      resolve();
+      resolve('css chunk loaded');
     };
 
     link.onerror = () => {
