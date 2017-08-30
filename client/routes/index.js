@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import Wrapper from '../containers/Wrapper/Wrapper';
+import Wrapper from '../components/Wrapper/Wrapper';
 import NotFound from '../components/NotFound/NotFound';
 import importCss from '../../services/importCss';
 
@@ -14,7 +14,7 @@ export default (
       name="landing"
       getComponent={
         (_, cb) => {
-          import('../containers/LandingPage/LandingPage' /* webpackChunkName: 'landing' */).then(loadRoute(cb)).catch(failRoute(cb));
+          import('../components/LandingPage/LandingPage' /* webpackChunkName: 'landing' */).then(loadRoute(cb)).catch(failRoute(cb));
           importCss('landing');
         }
       }
