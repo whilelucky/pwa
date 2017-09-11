@@ -20,6 +20,7 @@ export default {
 
   lateChunk(app, head, initialState, route) {
     return `
+          ${__LOCAL__ ? '' : `<style>${assets.vendor.styles}</style>`}
           ${__LOCAL__ ? '' : `<style>${assets.main.styles}</style>`}
           ${__LOCAL__ || !assets[route.name] ? '' : `<style id="${route.name}.css">${assets[route.name].styles}</style>`}
           ${__LOCAL__ ? '' : '<link rel="manifest" href="/manifest.json">'}

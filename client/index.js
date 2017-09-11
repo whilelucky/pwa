@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { ReduxAsyncConnect } from 'redux-connect';
 import configureStore from './redux/configureStore';
-import './css/core.css';
 import routes from './routes';
 
 const store = configureStore(window.__INITIAL_STATE__);
