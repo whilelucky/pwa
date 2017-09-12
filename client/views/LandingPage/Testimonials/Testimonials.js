@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
-import { Row, Col } from '../Flex';
-import LoaderHOC from '../LoaderHOC/LoaderHOC';
+import cn from 'classnames';
+import { Row, Col } from '../../../components/Flex';
+import LoaderHOC from '../../../components/LoaderHOC/LoaderHOC';
 import './testimonials.css';
 
 class Testimonials extends Component {
@@ -30,7 +30,7 @@ class Testimonials extends Component {
             testimonials.map(({ name, picture }, i) => (
               <Col key={name.first}>
                 <img
-                  className={cx('testimonials__img', {
+                  className={cn('testimonials__img', {
                     'testimonials__img--active': active === i,
                   })}
                   src={picture.medium}
@@ -38,7 +38,7 @@ class Testimonials extends Component {
                   onClick={this.showTestimonial(i)}
                 />
                 <div
-                  className={cx('testimonials__name', {
+                  className={cn('testimonials__name', {
                     'testimonials__name--visible': active === i,
                   })}
                 >

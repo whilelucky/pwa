@@ -4,7 +4,7 @@ import { renderToString } from 'react-dom/server';
 import { match } from 'react-router';
 import { Provider } from 'react-redux';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
-import configureStore from '../../client/redux/configureStore';
+import configureStore from '../../client/services/store/configureStore';
 import routes from '../../client/routes';
 import html from '../render/html';
 

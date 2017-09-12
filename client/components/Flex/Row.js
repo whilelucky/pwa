@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
+import cn from 'classnames';
 
-const Row = ({ className, tag, children, ...modifiers }) =>
+const Row = ({ className, tag, children, ...restProps }) =>
   React.createElement(tag, {
-    className: cx('row', {
-      'row--start': modifiers.start,
-      'row--center': modifiers.center,
-      'row--end': modifiers.end,
-      'row--top': modifiers.top,
-      'row--middle': modifiers.middle,
-      'row--bottom': modifiers.bottom,
-      'row--around': modifiers.around,
-      'row--between': modifiers.between,
-      'row--reverse': modifiers.reverse,
+    className: cn('row', {
+      'row--start': restProps.start,
+      'row--center': restProps.center,
+      'row--end': restProps.end,
+      'row--top': restProps.top,
+      'row--middle': restProps.middle,
+      'row--bottom': restProps.bottom,
+      'row--around': restProps.around,
+      'row--between': restProps.between,
+      'row--reverse': restProps.reverse,
     }, className),
   }, children);
 

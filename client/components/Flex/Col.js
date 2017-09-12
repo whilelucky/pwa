@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
+import cn from 'classnames';
 
-const Col = ({ className, tag, children, ...modifiers }) =>
+const Col = ({ className, tag, children, ...restProps }) =>
   React.createElement(tag, {
-    className: cx('col', {
-      [`col--${modifiers.size}`]: modifiers.size,
-      [`col--offset-${modifiers.offset}`]: modifiers.offset,
-      'col--first': modifiers.first,
-      'col--last': modifiers.last,
-      'col--reverse': modifiers.reverse,
+    className: cn('col', {
+      [`col--${restProps.size}`]: restProps.size,
+      [`col--offset-${restProps.offset}`]: restProps.offset,
+      'col--first': restProps.first,
+      'col--last': restProps.last,
+      'col--reverse': restProps.reverse,
     }, className),
   }, children);
 

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { asyncConnect } from 'redux-connect';
 import isEmpty from 'lodash/isEmpty';
-import { contentActionCreators } from '../../redux/ducks';
-import Testimonials from '../../components/Testimonials/Testimonials';
+import * as contentActionCreators from '../../services/content/duck';
+import Testimonials from './Testimonials/Testimonials';
 import './landingPage.css';
 
 const LandingPage = ({

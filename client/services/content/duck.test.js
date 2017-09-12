@@ -1,7 +1,7 @@
 import nock from 'nock';
 import { LIFECYCLE } from 'redux-pack';
-import * as testService from '../../../../services/testService';
-import contentReducer, * as contentActionCreators from './contentReducer';
+import * as testHelpers from '../test/helpers';
+import contentReducer, * as contentActionCreators from '../content/duck';
 
 const initialState = {
   isLoading: false,
@@ -9,7 +9,7 @@ const initialState = {
 };
 
 describe('contentActionCreators', () => {
-  const store = testService.mockStore();
+  const store = testHelpers.mockStore();
 
   afterEach(() => {
     nock.cleanAll();
@@ -26,10 +26,10 @@ describe('contentActionCreators', () => {
       .reply(200, apiResult);
 
     const expectedActions = [
-      testService.makeReduxPackAction(LIFECYCLE.START, {
+      testHelpers.makeReduxPackAction(LIFECYCLE.START, {
         type: 'GET_TESTIMONIALS',
       }),
-      testService.makeReduxPackAction(LIFECYCLE.SUCCESS, {
+      testHelpers.makeReduxPackAction(LIFECYCLE.SUCCESS, {
         type: 'GET_TESTIMONIALS',
         payload: apiResult,
         meta: { startPayload: undefined },
@@ -37,7 +37,7 @@ describe('contentActionCreators', () => {
     ];
 
     await store.dispatch(contentActionCreators.getTestimonials(numberOfTestimonials));
-    const dispatchedActions = store.getActions().map(testService.removeReduxPackTransaction);
+    const dispatchedActions = store.getActions().map(testHelpers.removeReduxPackTransaction);
 
     expect(dispatchedActions).toEqual(expectedActions);
   });
@@ -53,7 +53,7 @@ describe('contentReducer', () => {
   it('sets testimonials on GET_TESTIMONIALS:success', () => {
     const finalState = contentReducer(
       initialState,
-      testService.makeReduxPackAction(LIFECYCLE.SUCCESS, {
+      testHelpers.makeReduxPackAction(LIFECYCLE.SUCCESS, {
         type: 'GET_TESTIMONIALS',
         payload: { results: [{}, {}, {}] },
       }),
@@ -70,7 +70,7 @@ describe('contentReducer', () => {
   it('sets error on GET_TESTIMONIALS:failure', () => {
     const finalState = contentReducer(
       initialState,
-      testService.makeReduxPackAction(LIFECYCLE.FAILURE, {
+      testHelpers.makeReduxPackAction(LIFECYCLE.FAILURE, {
         type: 'GET_TESTIMONIALS',
         payload: {
           error: {},

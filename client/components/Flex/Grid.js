@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
+import cn from 'classnames';
 
 const Grid = ({ className, tag, fluid, children, ...restProps }) =>
   React.createElement(tag, {
-    className: cx({
+    className: cn({
       container: !fluid,
       'container-fluid': fluid,
     }, className),
