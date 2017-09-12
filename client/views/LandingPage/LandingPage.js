@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { asyncConnect } from 'redux-connect';
 import isEmpty from 'lodash/isEmpty';
-import * as contentActionCreators from '../../services/content/duck';
+import * as contentActionCreators from '../../services/content/contentDuck';
 import Testimonials from './Testimonials/Testimonials';
 import './landingPage.css';
 

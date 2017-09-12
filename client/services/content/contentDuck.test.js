@@ -1,7 +1,7 @@
 import nock from 'nock';
 import { LIFECYCLE } from 'redux-pack';
 import * as testHelpers from '../test/helpers';
-import contentReducer, * as contentActionCreators from '../content/duck';
+import contentReducer, * as contentActionCreators from '../content/contentDuck';
 
 const initialState = {
   isLoading: false,
