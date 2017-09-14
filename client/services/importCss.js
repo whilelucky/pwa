@@ -14,7 +14,6 @@ export default (chunkName) => {
   link.href = window.__ASSETS_MANIFEST__[chunkName].css;
   link.id = `${chunkName}.css`;
   link.rel = 'stylesheet';
-  link.media = 'only x';
 
   return new Promise((resolve, reject) => {
     let timeout;
@@ -22,9 +21,8 @@ export default (chunkName) => {
     link.onload = () => {
       link.onload = null;
       link.onerror = null;
-      link.media = 'all';
       clearTimeout(timeout);
-      resolve('css chunk loaded');
+      resolve(`css chunk loaded: ${chunkName}`);
     };
 
     link.onerror = () => {
