@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import Wrapper from './views/Wrapper/Wrapper';
-import NotFound from './views/NotFound/NotFound';
+import NotFoundPage from './views/NotFoundPage/NotFoundPage';
 import importCss from './services/importCss';
 
 export default (
@@ -17,7 +17,7 @@ export default (
       }}
     />
 
-    <Route path="*" component={NotFound} />
+    <Route path="*" component={NotFoundPage} />
 
   </Route>
 );
