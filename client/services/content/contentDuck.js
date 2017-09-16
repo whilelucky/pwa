@@ -4,7 +4,7 @@ const GET_TESTIMONIALS = 'GET_TESTIMONIALS';
 
 const initialState = {
   isLoading: false,
-  testimonials: [],
+  users: [],
 };
 
 export default (state = initialState, action) => {
@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
   switch (type) {
     case GET_TESTIMONIALS: return handle(state, action, {
       start: (s) => ({ ...s, isLoading: true }),
-      success: (s) => ({ ...s, testimonials: payload.results }),
+      success: (s) => ({ ...s, users: payload.results }),
       failure: (s) => ({ ...s, error: payload.error }),
       finish: (s) => ({ ...s, isLoading: false }),
     });
@@ -23,11 +23,11 @@ export default (state = initialState, action) => {
   }
 };
 
-export const getTestimonials = (numberOfTestimonials) => (dispatch, getState, { api }) =>
+export const getUsers = (numberOfUsers) => (dispatch, getState, { api }) =>
   dispatch({
     type: GET_TESTIMONIALS,
     promise: api.get('/api', {
-      results: numberOfTestimonials,
+      results: numberOfUsers,
       inc: 'name,location,picture',
     }),
   });

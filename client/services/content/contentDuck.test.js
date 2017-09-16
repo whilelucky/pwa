@@ -5,7 +5,7 @@ import contentReducer, * as contentActionCreators from '../content/contentDuck';
 
 const initialState = {
   isLoading: false,
-  testimonials: [],
+  users: [],
 };
 
 describe('contentActionCreators', () => {
@@ -17,12 +17,12 @@ describe('contentActionCreators', () => {
   });
 
   it('dispatches GET_TESTIMONIALS', async () => {
-    const numberOfTestimonials = 3;
+    const numberOfUsers = 3;
     const apiResult = { results: [{}, {}, {}] };
 
     nock('https://randomuser.me')
       .get('/api')
-      .query({ results: numberOfTestimonials, inc: 'name,location,picture' })
+      .query({ results: numberOfUsers, inc: 'name,location,picture' })
       .reply(200, apiResult);
 
     const expectedActions = [
@@ -36,7 +36,7 @@ describe('contentActionCreators', () => {
       }),
     ];
 
-    await store.dispatch(contentActionCreators.getTestimonials(numberOfTestimonials));
+    await store.dispatch(contentActionCreators.getUsers(numberOfUsers));
     const dispatchedActions = store.getActions().map(testHelpers.removeReduxPackTransaction);
 
     expect(dispatchedActions).toEqual(expectedActions);
@@ -50,7 +50,7 @@ describe('contentReducer', () => {
     expect(finalState).toEqual(expectedState);
   });
 
-  it('sets testimonials on GET_TESTIMONIALS:success', () => {
+  it('sets users on GET_TESTIMONIALS:success', () => {
     const finalState = contentReducer(
       initialState,
       testHelpers.makeReduxPackAction(LIFECYCLE.SUCCESS, {
@@ -61,7 +61,7 @@ describe('contentReducer', () => {
 
     const expectedState = {
       ...initialState,
-      testimonials: [{}, {}, {}],
+      users: [{}, {}, {}],
     };
 
     expect(finalState).toEqual(expectedState);

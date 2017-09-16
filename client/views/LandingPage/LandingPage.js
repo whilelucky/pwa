@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { asyncConnect } from 'redux-connect';
 import isEmpty from 'lodash/isEmpty';
 import * as contentActionCreators from '../../services/content/contentDuck';
-import Testimonials from './Testimonials/Testimonials';
+import Users from './Users/Users';
 import './landingPage.css';
 
 const LandingPage = ({
-  content: { testimonials },
+  content: { users },
 }) => (
   <div className="landing-page">
     <h1>PWA</h1>
     <p>An opinionated progressive web app boilerplate</p>
-    <Testimonials testimonials={testimonials} />
+    <Users users={users} />
   </div>
 );
 
@@ -22,8 +22,8 @@ LandingPage.propTypes = {
 
 const beforeRouteEnter = [{
   promise: ({ store: { dispatch, getState } }) => {
-    const promise = isEmpty(getState().content.testimonials)
-      ? dispatch(contentActionCreators.getTestimonials(3)) : null;
+    const promise = isEmpty(getState().content.users)
+      ? dispatch(contentActionCreators.getUsers(3)) : null;
     return __BROWSER__ ? null : promise;
   },
 }];

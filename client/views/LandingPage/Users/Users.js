@@ -3,43 +3,43 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { Row, Col } from '../../../components/Flex';
 import LoaderHOC from '../../../components/LoaderHOC/LoaderHOC';
-import './testimonials.css';
+import './users.css';
 
-class Testimonials extends Component {
+class Users extends Component {
   state = {
     active: 1,
   };
 
-  showTestimonial = (index) => () => {
+  showUser = (index) => () => {
     this.setState({ active: index });
   }
 
   render() {
-    const { testimonials, loadTime } = this.props;
+    const { users, loadTime } = this.props;
     const { active } = this.state;
 
-    return testimonials.length ? (
-      <section className="testimonials">
+    return users.length ? (
+      <section className="users">
         {
           loadTime ? (
             <small>Took: {loadTime}</small>
           ) : null
         }
-        <Row className="testimonials__list" between>
+        <Row className="users__list" between>
           {
-            testimonials.map(({ name, picture }, i) => (
+            users.map(({ name, picture }, i) => (
               <Col key={name.first}>
                 <img
-                  className={cn('testimonials__img', {
-                    'testimonials__img--active': active === i,
+                  className={cn('users__img', {
+                    'users__img--active': active === i,
                   })}
                   src={picture.medium}
                   alt={name.first}
-                  onClick={this.showTestimonial(i)}
+                  onClick={this.showUser(i)}
                 />
                 <div
-                  className={cn('testimonials__name', {
-                    'testimonials__name--visible': active === i,
+                  className={cn('users__name', {
+                    'users__name--visible': active === i,
                   })}
                 >
                   {name.first}
@@ -48,15 +48,15 @@ class Testimonials extends Component {
             ))
           }
         </Row>
-        <p>{testimonials[active].location.street}</p>
+        <p>{users[active].location.street}</p>
       </section>
     ) : (null);
   }
 }
 
-Testimonials.propTypes = {
-  testimonials: PropTypes.array.isRequired,
+Users.propTypes = {
+  users: PropTypes.array.isRequired,
   loadTime: PropTypes.string,
 };
 
-export default LoaderHOC('testimonials')(Testimonials);
+export default LoaderHOC('users')(Users);
