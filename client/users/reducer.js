@@ -1,7 +1,7 @@
 import { handle } from 'redux-pack';
 import * as types from './types';
 
-const initialState = {
+export const initialState = {
   isLoading: false,
   results: [],
 };

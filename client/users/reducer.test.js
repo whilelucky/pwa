@@ -3,12 +3,7 @@ import { LIFECYCLE } from 'redux-pack';
 import * as testHelpers from 'core/testHelpers';
 import * as types from './types';
 import * as actions from './actions';
-import reducer from './reducer';
-
-const initialState = {
-  isLoading: false,
-  results: [],
-};
+import reducer, { initialState } from './reducer';
 
 describe('user/actions', () => {
   const store = testHelpers.mockStore();
