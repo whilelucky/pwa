@@ -25,7 +25,13 @@ Col.propTypes = {
 };
 
 Col.defaultProps = {
+  className: '',
   tag: 'div',
+  size: 0,
+  offset: 0,
+  first: false,
+  last: false,
+  reverse: false,
 };
 
 export default Col;

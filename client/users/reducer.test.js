@@ -1,14 +1,16 @@
 import nock from 'nock';
 import { LIFECYCLE } from 'redux-pack';
-import * as testHelpers from '../test/testHelpers';
-import contentReducer, * as contentActionCreators from '../content/contentDuck';
+import * as testHelpers from 'core/testHelpers';
+import * as types from './types';
+import * as actions from './actions';
+import reducer from './reducer';
 
 const initialState = {
   isLoading: false,
-  users: [],
+  results: [],
 };
 
-describe('contentActionCreators', () => {
+describe('user/actions', () => {
   const store = testHelpers.mockStore();
 
   afterEach(() => {
@@ -16,62 +18,61 @@ describe('contentActionCreators', () => {
     store.clearActions();
   });
 
-  it('dispatches GET_TESTIMONIALS', async () => {
-    const numberOfUsers = 3;
+  it(`dispatches ${types.GET_ALL}`, async () => {
     const apiResult = { results: [{}, {}, {}] };
 
     nock('https://randomuser.me')
       .get('/api')
-      .query({ results: numberOfUsers, inc: 'name,location,picture' })
+      .query({ results: 3, inc: 'name,location,picture' })
       .reply(200, apiResult);
 
     const expectedActions = [
       testHelpers.makeReduxPackAction(LIFECYCLE.START, {
-        type: 'GET_TESTIMONIALS',
+        type: types.GET_ALL,
       }),
       testHelpers.makeReduxPackAction(LIFECYCLE.SUCCESS, {
-        type: 'GET_TESTIMONIALS',
+        type: types.GET_ALL,
         payload: apiResult,
         meta: { startPayload: undefined },
       }),
     ];
 
-    await store.dispatch(contentActionCreators.getUsers(numberOfUsers));
+    await store.dispatch(actions.getAll());
     const dispatchedActions = store.getActions().map(testHelpers.removeReduxPackTransaction);
 
     expect(dispatchedActions).toEqual(expectedActions);
   });
 });
 
-describe('contentReducer', () => {
+describe('users/reducer', () => {
   it('returns intialState', () => {
-    const finalState = contentReducer(undefined, {});
+    const finalState = reducer(undefined, {});
     const expectedState = initialState;
     expect(finalState).toEqual(expectedState);
   });
 
-  it('sets users on GET_TESTIMONIALS:success', () => {
-    const finalState = contentReducer(
+  it(`sets users on ${types.GET_ALL}:success`, () => {
+    const finalState = reducer(
       initialState,
       testHelpers.makeReduxPackAction(LIFECYCLE.SUCCESS, {
-        type: 'GET_TESTIMONIALS',
+        type: types.GET_ALL,
         payload: { results: [{}, {}, {}] },
       }),
     );
 
     const expectedState = {
       ...initialState,
-      users: [{}, {}, {}],
+      results: [{}, {}, {}],
     };
 
     expect(finalState).toEqual(expectedState);
   });
 
-  it('sets error on GET_TESTIMONIALS:failure', () => {
-    const finalState = contentReducer(
+  it(`sets error on ${types.GET_ALL}:failure`, () => {
+    const finalState = reducer(
       initialState,
       testHelpers.makeReduxPackAction(LIFECYCLE.FAILURE, {
-        type: 'GET_TESTIMONIALS',
+        type: types.GET_ALL,
         payload: {
           error: {},
         },

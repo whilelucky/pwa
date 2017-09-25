@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { ReduxAsyncConnect } from 'redux-connect';
-import configureStore from './services/store/configureStore';
-import routes from './routes';
+import configureStore from 'store/configureStore';
+import routes from 'views/routes';
 
 const store = configureStore(window.__INITIAL_STATE__);
 

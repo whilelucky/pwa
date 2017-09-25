@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { reducer as reduxAsyncConnectReducer } from 'redux-connect';
-import contentReducer from '../content/contentDuck';
+import usersReducer from 'users/reducer';
 
 export default combineReducers({
   reduxAsyncConnect: reduxAsyncConnectReducer,
-  content: contentReducer,
+  users: usersReducer,
 });

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import cn from 'classnames';
-import { Row, Col } from '../../../components/Flex';
-import LoaderHOC from '../../../components/LoaderHOC/LoaderHOC';
+import Flex from 'core/Flex';
+import LoaderHOC from 'core/LoaderHOC/LoaderHOC';
 import './users.css';
 
 class Users extends Component {
@@ -25,10 +27,10 @@ class Users extends Component {
             <small>Took: {loadTime}</small>
           ) : null
         }
-        <Row className="users__list" between>
+        <Flex.Row className="users__list" between>
           {
             users.map(({ name, picture }, i) => (
-              <Col key={name.first}>
+              <Flex.Col key={name.first}>
                 <img
                   className={cn('users__img', {
                     'users__img--active': active === i,
@@ -44,10 +46,10 @@ class Users extends Component {
                 >
                   {name.first}
                 </div>
-              </Col>
+              </Flex.Col>
             ))
           }
-        </Row>
+        </Flex.Row>
         <p>{users[active].location.street}</p>
       </section>
     ) : (null);
@@ -59,4 +61,15 @@ Users.propTypes = {
   loadTime: PropTypes.string,
 };
 
-export default LoaderHOC('users')(Users);
+Users.defaultProps = {
+  loadTime: '',
+};
+
+const mapStateToProps = (state) => ({
+  users: state.users.results,
+});
+
+export default compose(
+  connect(mapStateToProps),
+  LoaderHOC('users'),
+)(Users);

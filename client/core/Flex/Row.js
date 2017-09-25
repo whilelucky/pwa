@@ -33,7 +33,17 @@ Row.propTypes = {
 };
 
 Row.defaultProps = {
+  className: '',
   tag: 'div',
+  start: false,
+  center: false,
+  end: false,
+  top: false,
+  middle: false,
+  bottom: false,
+  around: false,
+  between: false,
+  reverse: false,
 };
 
 export default Row;

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { asyncConnect } from 'redux-connect';
-import { performanceMark } from '../../services/utils';
+import * as utils from 'core/utils';
 import './wrapper.css';
 
 class Wrapper extends Component {
   componentDidMount() {
-    performanceMark('firstInteraction');
+    utils.performanceMark('firstInteraction');
   }
 
   render() {
@@ -26,11 +25,4 @@ Wrapper.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-const beforeRouteEnter = [];
-
-const mapStateToProps = false;
-
-export default asyncConnect(
-  beforeRouteEnter,
-  mapStateToProps,
-)(Wrapper);
+export default Wrapper;

@@ -14,11 +14,12 @@ const Grid = ({ className, tag, fluid, children, ...restProps }) =>
 Grid.propTypes = {
   className: PropTypes.string,
   tag: PropTypes.string.isRequired,
-  fluid: PropTypes.bool.isRequired,
+  fluid: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };
 
 Grid.defaultProps = {
+  className: '',
   tag: 'div',
   fluid: false,
 };
