@@ -1,8 +1,8 @@
 import React from 'react';
 import isEmpty from 'lodash/isEmpty';
 import { asyncConnect } from 'redux-connect';
-import Users from 'users/Users/Users';
 import * as usersActions from 'users/actions';
+import Users from 'users/components/Users/Users';
 import './landingPage.css';
 
 const LandingPage = () => (

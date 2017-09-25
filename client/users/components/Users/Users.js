@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import cn from 'classnames';
-import Flex from 'core/Flex';
-import LoaderHOC from 'core/LoaderHOC/LoaderHOC';
+import Flex from 'core/components/Flex';
+import LoaderHOC from 'core/components/LoaderHOC/LoaderHOC';
 import './users.css';
 
 class Users extends Component {
