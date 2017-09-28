@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import * as utils from 'core/utils';
+import { performanceMark } from 'core/utils/helpers';
 import './wrapper.css';
 
 class Wrapper extends Component {
   componentDidMount() {
-    utils.performanceMark('firstInteraction');
+    performanceMark('firstInteraction');
   }
 
   render() {

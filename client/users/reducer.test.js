@@ -1,6 +1,6 @@
 import nock from 'nock';
 import { LIFECYCLE } from 'redux-pack';
-import * as testHelpers from 'core/testHelpers';
+import * as testHelpers from 'core/utils/testHelpers';
 import * as types from './types';
 import * as actions from './actions';
 import reducer, { initialState } from './reducer';
