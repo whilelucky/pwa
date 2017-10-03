@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { performanceMark } from 'core/utils/helpers';
+import { performanceMark } from 'utils/helpers';
 import './wrapper.css';
 
 class Wrapper extends Component {
