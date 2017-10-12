@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
 import slashes from 'connect-slashes';
-import renderMiddleware from './middlewares/renderMiddleware';
+import renderMiddleware from './middlewares/renderMiddleware/renderMiddleware';
 
 const app = express();
 app.set('trust proxy', true);

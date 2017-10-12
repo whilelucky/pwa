@@ -1,7 +1,7 @@
 import React from 'react';
 import image404 from './404.png';
 
-const NotFoundPage = () => (
+const NotFound = () => (
   <img
     style={{ width: '100%' }}
     src={image404}
@@ -9,4 +9,4 @@ const NotFoundPage = () => (
   />
 );
 
-export default NotFoundPage;
+export default NotFound;

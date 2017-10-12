@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import cn from 'classnames';
 import Flex from 'core/components/Flex';
 import LoaderHOC from 'core/components/LoaderHOC/LoaderHOC';
-import './users.css';
+import './usersList.css';
 
-class Users extends Component {
+class UsersList extends Component {
   state = {
     active: 1,
   };
@@ -56,12 +56,12 @@ class Users extends Component {
   }
 }
 
-Users.propTypes = {
+UsersList.propTypes = {
   users: PropTypes.array.isRequired,
   loadTime: PropTypes.string,
 };
 
-Users.defaultProps = {
+UsersList.defaultProps = {
   loadTime: '',
 };
 
@@ -72,4 +72,4 @@ const mapStateToProps = (state) => ({
 export default compose(
   connect(mapStateToProps),
   LoaderHOC('users'),
-)(Users);
+)(UsersList);
