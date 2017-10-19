@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import cn from 'classnames';
-import Flex from 'core/components/Flex';
+import Flex from 'core/components/Flex/Flex';
 import LoaderHOC from 'core/components/LoaderHOC/LoaderHOC';
 import './usersList.css';
 
