@@ -19,7 +19,7 @@ const Row = ({ className, tag, children, ...restProps }) =>
 
 Row.propTypes = {
   className: PropTypes.string,
-  tag: PropTypes.string.isRequired,
+  tag: PropTypes.string,
   start: PropTypes.bool,
   center: PropTypes.bool,
   end: PropTypes.bool,

@@ -15,7 +15,7 @@ const Col = ({ className, tag, children, ...restProps }) =>
 
 Col.propTypes = {
   className: PropTypes.string,
-  tag: PropTypes.string.isRequired,
+  tag: PropTypes.string,
   size: PropTypes.number,
   offset: PropTypes.number,
   first: PropTypes.bool,

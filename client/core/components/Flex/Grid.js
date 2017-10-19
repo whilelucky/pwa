@@ -13,7 +13,7 @@ const Grid = ({ className, tag, fluid, children, ...restProps }) =>
 
 Grid.propTypes = {
   className: PropTypes.string,
-  tag: PropTypes.string.isRequired,
+  tag: PropTypes.string,
   fluid: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };
