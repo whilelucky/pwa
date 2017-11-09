@@ -11,13 +11,6 @@
     "__PWA_ENV__": false,
     "__LOCAL__": false
   },
-  "settings": {
-    "import/resolver": {
-      "webpack": {
-        "config": "./webpack.client.js"
-      }
-    }
-  },
   "rules": {
     "arrow-parens": ["error", "always"],
     "function-paren-newline": ["error", "consistent"],

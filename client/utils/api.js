@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import queryString from 'query-string';
-import config from 'config';
+import config from '../../config';
 
 const fireRequest = async (method, url, data) => {
   const fullUrl = `${config.apiUrl}${url}`;

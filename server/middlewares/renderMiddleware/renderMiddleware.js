@@ -4,8 +4,8 @@ import { renderToString } from 'react-dom/server';
 import { match } from 'react-router';
 import { Provider } from 'react-redux';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
-import configureStore from 'store/configureStore';
-import routes from 'routes';
+import configureStore from '../../../client/store/configureStore';
+import routes from '../../../client/routes';
 import html from './html';
 
 const PWA_SSR = process.env.PWA_SSR === 'true';

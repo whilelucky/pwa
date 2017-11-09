@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import cn from 'classnames';
-import Flex from 'core/components/Flex/Flex';
-import LoaderHOC from 'core/components/LoaderHOC/LoaderHOC';
-import './usersList.css';
+import Flex from '../../../components/Flex/Flex';
+import LoaderHOC from '../../../components/LoaderHOC/LoaderHOC';
+import * as userModel from '../../../services/user/userModel';
+import './userList.css';
 
 class UsersList extends Component {
   state = {
@@ -21,27 +22,27 @@ class UsersList extends Component {
     const { active } = this.state;
 
     return users.length ? (
-      <section className="users">
+      <section className="user">
         {
           loadTime ? (
             <small>Took: {loadTime}</small>
           ) : null
         }
-        <Flex.Row className="users__list" between>
+        <Flex.Row className="user__list" between>
           {
             users.map(({ name, picture }, i) => (
               <Flex.Col key={name.first}>
                 <img
-                  className={cn('users__img', {
-                    'users__img--active': active === i,
+                  className={cn('user__img', {
+                    'user__img--active': active === i,
                   })}
                   src={picture.medium}
                   alt={name.first}
                   onClick={this.showUser(i)}
                 />
                 <div
-                  className={cn('users__name', {
-                    'users__name--visible': active === i,
+                  className={cn('user__name', {
+                    'user__name--visible': active === i,
                   })}
                 >
                   {name.first}
@@ -66,7 +67,7 @@ UsersList.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  users: state.users.results,
+  users: userModel.getAll(state.user.ids, state.user.byId),
 });
 
 export default compose(

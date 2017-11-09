@@ -27,9 +27,7 @@ module.exports = {
   },
 
   resolve: {
-    modules: [path.resolve('./client'), 'node_modules'],
     alias: {
-      config: path.resolve('./config'),
       react: 'preact-compat',
       'react-dom': 'preact-compat',
     },
@@ -42,7 +40,7 @@ module.exports = {
       { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'images/[name].[hash:8].[ext]' } }] },
       { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'fonts/[name].[hash:8].[ext]' } }] },
     ] : [
-      { test: /\.js$/, exclude: /node_modules/, use: [{ loader: 'babel-loader', options: { cacheDirectory: 'babel_cache' } }] },
+      { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
       { test: /\.css$/, use: ['css-loader/locals', 'postcss-loader'] },
       { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'images/[name].[ext]' } }] },
       { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'fonts/[name].[ext]' } }] },

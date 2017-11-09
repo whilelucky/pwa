@@ -18,7 +18,7 @@ module.exports = {
 
   entry: {
     main: './client/index.js',
-    vendor: ['./client/core/vendor/js/modules.js', './client/core/vendor/css/base.css'],
+    vendor: ['./client/vendor/js/modules.js', './client/vendor/css/base.css'],
   },
 
   output: {
@@ -29,9 +29,7 @@ module.exports = {
   },
 
   resolve: {
-    modules: [path.resolve('./client'), 'node_modules'],
     alias: {
-      config: path.resolve('./config'),
       react: 'preact-compat',
       'react-dom': 'preact-compat',
     },
@@ -44,7 +42,7 @@ module.exports = {
       { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'images/[name].[hash:8].[ext]' } }] },
       { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'fonts/[name].[hash:8].[ext]' } }] },
     ] : [
-      { test: /\.js$/, exclude: /node_modules/, use: [{ loader: 'babel-loader', options: { cacheDirectory: 'babel_cache' } }] },
+      { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
       { test: /\.css$/, use: ['style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader'] },
       { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'images/[name].[ext]' } }] },
       { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'fonts/[name].[ext]' } }] },
@@ -99,13 +97,13 @@ module.exports = {
       new ExtractCssChunks('css/[name].[contenthash:8].css'),
       new CopyWebpackPlugin([
         { from: './client/manifest.json' },
-        { from: './client/offline', to: 'offline/[name].1a2b3c4d.[ext]' },
+        { from: './client/offline', to: 'offline/[name].00000001.[ext]' },
       ], { copyUnmodified: true }),
       new SWPrecacheWebpackPlugin({
         cacheId: 'pwa',
         filename: 'serviceWorker.js',
         staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],
-        importScripts: ['offline/offline.1a2b3c4d.js'],
+        importScripts: ['offline/offline.00000001.js'],
         dontCacheBustUrlsMatching: /./,
         minify: true,
       }),

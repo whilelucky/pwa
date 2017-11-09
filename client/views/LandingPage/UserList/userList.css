@@ -1,6 +1,6 @@
-@import '../../../core/vendor/css/variables.css';
+@import '../../../vendor/css/variables.css';
 
-.users {
+.user {
   margin-top: 50px;
 
   &__list {

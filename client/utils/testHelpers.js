@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import reduxThunk from 'redux-thunk';
 import { middleware as reduxPack, KEY } from 'redux-pack';
-import api from 'core/api';
+import api from './api';
 
 export const makeReduxPackAction = (lifecycle, { type, payload, meta = {} }) => ({
   type,

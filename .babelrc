@@ -10,6 +10,9 @@
     "react",
     "stage-1"
   ],
+  "plugins": [
+    "react-loadable/babel"
+  ],
   "env": {
     "test": {
       "presets": [

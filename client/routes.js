@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import importCss from 'core/importCss';
-import NotFoundPage from 'core/components/NotFound/NotFound';
-import Wrapper from 'wrapper/components/Wrapper/Wrapper';
+import NotFoundPage from './components/NotFound/NotFound';
+import Wrapper from './views/Wrapper/Wrapper';
+import importCss from './utils/importCss';
 
 export const loadRoute = {
-  landing: () => Promise.all([
-    import('landing/components/LandingPage/LandingPage' /* webpackChunkName: 'landing' */),
-    importCss('landing'),
+  LandingPage: () => Promise.all([
+    import('./views/LandingPage/LandingPage' /* webpackChunkName: 'LandingPage' */),
+    importCss('LandingPage'),
   ]),
 };
 
@@ -15,8 +15,9 @@ export default (
   <Route path="/" component={Wrapper}>
 
     <IndexRoute
-      name="landing"
-      getComponent={(_, cb) => loadRoute.landing().then(([module]) => cb(null, module.default))}
+      name="LandingPage"
+      getComponent={(_, cb) => loadRoute.LandingPage()
+        .then(([module]) => cb(null, module.default))}
     />
 
     <Route path="*" component={NotFoundPage} />

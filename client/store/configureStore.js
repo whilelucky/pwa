@@ -1,7 +1,7 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import { middleware as reduxPack } from 'redux-pack';
-import api from 'core/api';
+import api from '../utils/api';
 import rootReducer from './rootReducer';
 
 const middlewares = [
