@@ -12,7 +12,7 @@ body {
   color: var(--color-tertiary);
   font-size: 1.4em;
   font-weight: 400;
-  font-family: system-ui;
+  font-family: system-ui, sans-serif;
 }
 
 *,

@@ -1,5 +1,5 @@
-/* Colors */
 :root {
+  /* colors */
   --color-primary: #5500eb;
   --color-secondary: #4a4a4a;
   --color-tertiary: #9b9b9b;
@@ -7,9 +7,7 @@
   --color-quinary: #f1f1f1;
   --color-error: #d00;
   --color-link: #0d0;
-}
 
-/* Shadows */
-:root {
+  /* shadows */
   --shadow-primary: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
