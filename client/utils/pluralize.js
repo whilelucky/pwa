@@ -1,3 +1,2 @@
-export default (value, text, suffix = 's') => (
-  +value > 1 ? `${text}${suffix}` : text
-);
+export default (amount, text, suffix = 's') =>
+  +amount > 1 ? `${text}${suffix}` : text;

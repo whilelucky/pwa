@@ -53,7 +53,7 @@ class UsersList extends Component {
         </Flex.Row>
         <p>{users[active].location.street}</p>
       </section>
-    ) : (null);
+    ) : null;
   }
 }
 
