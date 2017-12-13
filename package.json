@@ -16,7 +16,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "npm run local",
-    "stop": "pm2 delete pm2.json && rimraf npm-debug.log*",
+    "stop": "pm2 delete pm2.json",
     "prelocal": "mkdir -p ./build/server/ && touch ./build/server/index.js",
     "local": "PWA_ENV=local PWA_PUBLIC_PATH=http://localhost:8080/build/client/ PWA_SSR=false NODE_ENV=development PORT=8000 webpack-dashboard -- run-p local:*",
     "local:client": "webpack-dev-server --config ./webpack.client.js --hot",
@@ -117,13 +117,6 @@
       "__BROWSER__": false,
       "__PWA_ENV__": "local",
       "__LOCAL__": true
-    },
-    "moduleDirectories": [
-      "<rootDir>/client",
-      "node_modules"
-    ],
-    "moduleNameMapper": {
-      "config$": "<rootDir>/config"
     }
   },
   "repository": {
