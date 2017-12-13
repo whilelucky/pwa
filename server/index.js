@@ -7,7 +7,6 @@ import slashes from 'connect-slashes';
 import renderMiddleware from './middlewares/renderMiddleware/renderMiddleware';
 
 const app = express();
-app.set('trust proxy', true);
 app.use(helmet({ dnsPrefetchControl: false }));
 app.use(compression());
 app.use(morgan(__LOCAL__ ? 'dev' : 'combined'));
