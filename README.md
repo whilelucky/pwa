@@ -1,5 +1,5 @@
 # Progressive Web App
-> An opinionated progressive web app boilerplate, to hit the ground running.
+> A production grade progressive web app, to hit the ground running.
 
 ## Setup
 ```
@@ -14,11 +14,11 @@ $ npm install
 - PWA_ENV (build-dependent)
   - development: configs are obtained from /config/development.js
   - production: configs are obtained from /config/production.js
-  - customConfig: configs are obtained from /config/customConfig.js
+  - customPwaEnv: configs are obtained from /config/customPwaEnv.js
 
 - PWA_PUBLIC_PATH (build-dependent)
   - /build/client/: assets are fetched from the local filesystem
-  - //production.cdn.com/build/client/: assets are fetched from this cdn path
+  - /production.cdn.com/build/client/: assets are fetched from this cdn path
   - /custom/path/: assets are fetched from /custom/path/
 
 - PWA_SSR (build-independent)
