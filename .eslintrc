@@ -15,6 +15,7 @@
     "arrow-parens": ["error", "always"],
     "function-paren-newline": ["error", "consistent"],
     "import/no-named-default": ["off"],
+    "no-confusing-arrow": ["off"],
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0, "maxBOF": 0 }],
     "no-underscore-dangle": ["off"],
     "object-curly-newline": ["error", { "consistent": true }],
