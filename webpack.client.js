@@ -18,7 +18,7 @@ module.exports = {
 
   entry: {
     main: './client/index.js',
-    vendor: ['./client/vendor/js/modules.js', './client/vendor/css/styles.css'],
+    vendor: ['./client/vendor/modules/modules.js', './client/vendor/styles/styles.css'],
   },
 
   output: {
