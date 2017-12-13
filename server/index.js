@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
 import slashes from 'connect-slashes';
+import Loadable from 'react-loadable';
 import renderMiddleware from './middlewares/renderMiddleware/renderMiddleware';
 
 const app = express();
@@ -17,7 +18,9 @@ app.use(slashes(true));
 app.use(renderMiddleware);
 
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
-  // eslint-disable-next-line
-  console.info(`pwa is running as ${__PWA_ENV__} on port ${PORT}`);
+Loadable.preloadAll().then(() => {
+  app.listen(PORT, () => {
+    // eslint-disable-next-line
+    console.info(`pwa is running as ${__PWA_ENV__} on port ${PORT}`);
+  });
 });

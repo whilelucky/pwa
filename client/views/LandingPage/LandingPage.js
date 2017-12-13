@@ -4,7 +4,7 @@ import isEmpty from 'lodash/isEmpty';
 import { asyncConnect } from 'redux-connect';
 import { bindActionCreators, compose } from 'redux';
 import * as userActionCreators from '../../services/user/userActionCreators';
-import UsersList from './UserList/UserList';
+import UsersListAsync from './UserList/UserListAsync';
 import './landingPage.css';
 
 class LandingPage extends React.Component {
@@ -18,7 +18,7 @@ class LandingPage extends React.Component {
       <div className="landing-page">
         <h1>PWA</h1>
         <p>An opinionated progressive web app boilerplate</p>
-        <UsersList />
+        <UsersListAsync />
       </div>
     );
   }

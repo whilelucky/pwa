@@ -1,5 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import Loadable from 'react-loadable';
 import { renderToString } from 'react-dom/server';
 import { match } from 'react-router';
 import { Provider } from 'react-redux';
@@ -13,6 +14,7 @@ const PWA_SSR = process.env.PWA_SSR === 'true';
 const serverRenderedChunks = async (req, res, renderProps) => {
   const route = renderProps.routes[renderProps.routes.length - 1];
   const store = configureStore();
+  const chunks = [];
 
   res.set('Content-Type', 'text/html');
 
@@ -24,13 +26,16 @@ const serverRenderedChunks = async (req, res, renderProps) => {
 
   const lateChunk = html.lateChunk(
     PWA_SSR ? renderToString(
-      <Provider store={store} key="provider">
-        <ReduxAsyncConnect {...renderProps} />
-      </Provider>,
+      <Loadable.Capture report={(name) => chunks.push(name.replace(/.*\//, ''))}>
+        <Provider store={store} key="provider">
+          <ReduxAsyncConnect {...renderProps} />
+        </Provider>
+      </Loadable.Capture>,
     ) : '',
     Helmet.renderStatic(),
     store.getState(),
     route,
+    chunks,
   );
 
   res.end(lateChunk);
