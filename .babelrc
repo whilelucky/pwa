@@ -12,7 +12,10 @@
     "stage-1"
   ],
   "plugins": [
-    "react-loadable/babel"
+    "react-loadable/babel",
+    ["styled-components", {
+      "ssr": true
+    }]
   ],
   "env": {
     "test": {
@@ -24,7 +27,11 @@
     },
     "production": {
       "plugins": [
-        "transform-react-remove-prop-types"
+        "transform-react-remove-prop-types",
+        ["styled-components", {
+          "displayName": false,
+          "ssr": true
+        }]
       ]
     }
   }

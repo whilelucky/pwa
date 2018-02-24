@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-import 'classnames';
 import 'isomorphic-fetch';
 import 'lodash/isEmpty';
 import 'moment';
@@ -13,3 +12,4 @@ import 'react-router-dom';
 import 'redux';
 import 'redux-pack';
 import 'redux-thunk';
+import 'styled-components';

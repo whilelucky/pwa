@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
+import styled from 'styled-components';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import Text from '../../core/Text';
 import Flex from '../../core/Flex';
-import './userList.css';
+import Spacer from '../../core/Spacer';
+
+const Image = styled.img`
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-color: ${(p) => p.isActive ? p.theme.color.primary : ''};
+`;
 
 class UsersList extends Component {
   state = {
@@ -20,32 +29,28 @@ class UsersList extends Component {
     const { active } = this.state;
 
     return users.length ? (
-      <section className="user">
-        <Flex.Row className="user__list" between>
-          {
-            users.map(({ name, picture }, i) => (
-              <Flex.Col key={name.first}>
-                <img
-                  className={cn('user__img', {
-                    'user__img--active': active === i,
-                  })}
-                  src={picture.medium}
-                  alt={name.first}
-                  onClick={this.showUser(i)}
-                />
-                <div
-                  className={cn('user__name', {
-                    'user__name--visible': active === i,
-                  })}
-                >
-                  {name.first}
-                </div>
-              </Flex.Col>
-            ))
-          }
-        </Flex.Row>
-        <p>{users[active].location.street}</p>
-      </section>
+      <Spacer margin={[7, 0]}>
+        <div>
+          <Flex>
+            {
+              users.map(({ name, picture }, i) => (
+                <Flex key={name.first} flex="1" flexDirection="column">
+                  <Spacer margin={1.5}>
+                    <Image
+                      src={picture.medium}
+                      alt={name.first}
+                      isActive={active === i}
+                      onClick={this.showUser(i)}
+                    />
+                  </Spacer>
+                  <Text>{name.first}</Text>
+                </Flex>
+              ))
+            }
+          </Flex>
+          <Text>{users[active].location.street}</Text>
+        </div>
+      </Spacer>
     ) : null;
   }
 }

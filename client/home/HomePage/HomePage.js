@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import * as userActionCreators from '../../user/userActionCreators';
 import UsersList from '../../user/UserList';
-import './homePage.css';
+import Spacer from '../../core/Spacer';
 
 class HomePage extends React.Component {
   static componentWillServerRender = ({ store }) =>
@@ -21,11 +21,13 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <div className="home-page">
-        <h1>PWA</h1>
-        <p>An opinionated progressive web app boilerplate</p>
-        <UsersList />
-      </div>
+      <Spacer margin={[2, 0]}>
+        <div style={{ textAlign: 'center' }}>
+          <h1>PWA</h1>
+          <p>An opinionated progressive web app boilerplate</p>
+          <UsersList />
+        </div>
+      </Spacer>
     );
   }
 }

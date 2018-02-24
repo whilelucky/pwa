@@ -18,12 +18,9 @@ export default {
           ${!assets[route.name] ? '' : `<link rel="preload" as="script" href="${assets[route.name].js}">`}`;
   },
 
-  lateChunk(app, head, initialState, route, chunks) {
+  lateChunk(app, styles, head, initialState, route, chunks) {
     return `
-          ${__LOCAL__ ? '' : `<style>${assets.vendor.styles}</style>`}
-          ${__LOCAL__ ? '' : `<style>${assets.main.styles}</style>`}
-          ${__LOCAL__ || !assets[route.name] ? '' : `<style id="${route.name}.css">${assets[route.name].styles}</style>`}
-          ${__LOCAL__ ? '' : chunks.reduce((s, name) => `${s}<style id="${name}.css">${assets[name].styles}</style>`, '')}
+          ${__LOCAL__ ? '' : styles}
           ${__LOCAL__ ? '' : '<link rel="manifest" href="/manifest.json">'}
           <meta name="mobile-web-app-capable" content="yes">
           <meta name="apple-mobile-web-app-capable" content="yes">
