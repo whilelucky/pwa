@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import cn from 'classnames';
-import Flex from '../../../components/Flex/Flex';
-import LoaderHOC from '../../../components/LoaderHOC/LoaderHOC';
-import * as userModel from '../../../services/user/userModel';
+import Flex from '../../core/Flex';
 import './userList.css';
 
 class UsersList extends Component {
@@ -18,16 +16,11 @@ class UsersList extends Component {
   }
 
   render() {
-    const { users, loadTime } = this.props;
+    const { users } = this.props;
     const { active } = this.state;
 
     return users.length ? (
       <section className="user">
-        {
-          loadTime ? (
-            <small>Took: {loadTime}</small>
-          ) : null
-        }
         <Flex.Row className="user__list" between>
           {
             users.map(({ name, picture }, i) => (
@@ -59,18 +52,12 @@ class UsersList extends Component {
 
 UsersList.propTypes = {
   users: PropTypes.array.isRequired,
-  loadTime: PropTypes.string,
-};
-
-UsersList.defaultProps = {
-  loadTime: '',
 };
 
 const mapStateToProps = (state) => ({
-  users: userModel.getAll(state.user.ids, state.user.byId),
+  users: Object.values(state.$user.byId),
 });
 
 export default compose(
   connect(mapStateToProps),
-  LoaderHOC('users'),
 )(UsersList);

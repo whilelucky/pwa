@@ -4,7 +4,7 @@ export default (chunkName) => {
   } else if (!(chunkName in window.__ASSETS_MANIFEST__)) {
     return Promise.reject(`chunk not found: ${chunkName}`);
   } else if (!window.__ASSETS_MANIFEST__[chunkName].css) {
-    return Promise.resolve(`chunk css does not exist: ${chunkName}`);
+    return Promise.resolve(`css chunk does not exist: ${chunkName}`);
   } else if (document.getElementById(`${chunkName}.css`)) {
     return Promise.resolve(`css chunk already loaded: ${chunkName}`);
   }

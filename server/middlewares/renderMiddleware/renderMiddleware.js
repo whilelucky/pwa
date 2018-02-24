@@ -1,58 +1,52 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import Loadable from 'react-loadable';
+import { matchRoutes, renderRoutes } from 'react-router-config';
 import { renderToString } from 'react-dom/server';
-import { match } from 'react-router';
+import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
-import configureStore from '../../../client/store/configureStore';
+import createStore from '../../../client/store/createStore';
 import routes from '../../../client/routes';
+import execComponentWillServerRender from './execComponentWillServerRender';
 import html from './html';
 
 const PWA_SSR = process.env.PWA_SSR === 'true';
 
-const serverRenderedChunks = async (req, res, renderProps) => {
-  const route = renderProps.routes[renderProps.routes.length - 1];
-  const store = configureStore();
+export default async (req, res) => {
+  const location = req.originalUrl || req.url;
+  const branches = matchRoutes(routes, location);
+  const branch = branches[branches.length - 1];
+  const store = createStore();
+  const context = {};
   const chunks = [];
 
   res.set('Content-Type', 'text/html');
 
-  const earlyChunk = html.earlyChunk(route);
+  const earlyChunk = html.earlyChunk(branch.route);
   res.write(earlyChunk);
   res.flush();
 
-  if (PWA_SSR) await loadOnServer({ ...renderProps, store });
+  if (PWA_SSR) {
+    await execComponentWillServerRender(branches, { req, res, store });
+  }
+
+  const app = PWA_SSR ? renderToString(
+    <Loadable.Capture report={(name) => chunks.push(name.replace(/.*\//, ''))}>
+      <Provider store={store}>
+        <StaticRouter location={location} context={context}>
+          {renderRoutes(routes)}
+        </StaticRouter>
+      </Provider>
+    </Loadable.Capture>,
+  ) : '';
 
   const lateChunk = html.lateChunk(
-    PWA_SSR ? renderToString(
-      <Loadable.Capture report={(name) => chunks.push(name.replace(/.*\//, ''))}>
-        <Provider store={store} key="provider">
-          <ReduxAsyncConnect {...renderProps} />
-        </Provider>
-      </Loadable.Capture>,
-    ) : '',
+    app,
     Helmet.renderStatic(),
     store.getState(),
-    route,
+    branch.route,
     chunks,
   );
 
   res.end(lateChunk);
-};
-
-export default (req, res) => {
-  match({
-    routes,
-    location: req.originalUrl,
-  }, (error, redirectLocation, renderProps) => {
-    if (error) {
-      return res.status(500).send(error.message);
-    } else if (redirectLocation) {
-      return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-    } else if (renderProps) {
-      return serverRenderedChunks(req, res, renderProps);
-    }
-    return res.status(404).send('404: Not Found');
-  });
 };

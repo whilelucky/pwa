@@ -1,21 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import { ReduxAsyncConnect } from 'redux-connect';
-import configureStore from './store/configureStore';
+import { BrowserRouter } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
+import createStore from './store/createStore';
 import routes from './routes';
 
-const store = configureStore(window.__INITIAL_STATE__);
+const store = createStore(window.__INITIAL_STATE__);
 
 ReactDOM.render(
-  <Provider store={store} key="provider">
-    <Router
-      routes={routes}
-      history={browserHistory}
-      render={(props) => <ReduxAsyncConnect {...props} />}
-      onUpdate={() => window.scrollTo(0, 0)}
-    />
+  <Provider store={store}>
+    <BrowserRouter>
+      {renderRoutes(routes)}
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 );

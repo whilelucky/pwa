@@ -1,10 +1,10 @@
 import nock from 'nock';
 import { LIFECYCLE } from 'redux-pack';
-import * as testHelpers from '../../utils/testHelpers';
-import * as userTypes from './userTypes';
+import * as testHelpers from '../utils/testHelpers';
+import * as userActionTypes from './userActionTypes';
 import * as userActionCreators from './userActionCreators';
-import * as userModel from './userModel';
-import reducer, { initialState } from './userReducer';
+import * as userHelpers from './userHelpers';
+import * as userReducer from './userReducer';
 
 describe('user/userActionCreators', () => {
   const store = testHelpers.mockStore();
@@ -14,7 +14,7 @@ describe('user/userActionCreators', () => {
     store.clearActions();
   });
 
-  it(`dispatches ${userTypes.GET_ALL}`, async () => {
+  it(`dispatches ${userActionTypes.GET_ALL}`, async () => {
     const apiResult = { results: [{}, {}, {}] };
 
     nock('https://randomuser.me')
@@ -24,10 +24,10 @@ describe('user/userActionCreators', () => {
 
     const expectedActions = [
       testHelpers.makeReduxPackAction(LIFECYCLE.START, {
-        type: userTypes.GET_ALL,
+        type: userActionTypes.GET_ALL,
       }),
       testHelpers.makeReduxPackAction(LIFECYCLE.SUCCESS, {
-        type: userTypes.GET_ALL,
+        type: userActionTypes.GET_ALL,
         payload: apiResult,
         meta: { startPayload: undefined },
       }),
@@ -42,35 +42,35 @@ describe('user/userActionCreators', () => {
 
 describe('user/userReducer', () => {
   it('returns intialState', () => {
-    const finalState = reducer(undefined, {});
-    const expectedState = initialState;
+    const finalState = userReducer.reducer(undefined, {});
+    const expectedState = userReducer.initialState;
     expect(finalState).toEqual(expectedState);
   });
 
-  it(`sets user on ${userTypes.GET_ALL}:success`, () => {
+  it(`sets user on ${userActionTypes.GET_ALL}:success`, () => {
     const apiResult = [{}, {}, {}];
 
-    const finalState = reducer(
-      initialState,
+    const finalState = userReducer.reducer(
+      userReducer.initialState,
       testHelpers.makeReduxPackAction(LIFECYCLE.SUCCESS, {
-        type: userTypes.GET_ALL,
+        type: userActionTypes.GET_ALL,
         payload: { results: apiResult },
       }),
     );
 
     const expectedState = {
-      ...initialState,
-      ...userModel.normalize(apiResult),
+      ...userReducer.initialState,
+      ...userHelpers.normalize(apiResult),
     };
 
     expect(finalState).toEqual(expectedState);
   });
 
-  it(`sets error on ${userTypes.GET_ALL}:failure`, () => {
-    const finalState = reducer(
-      initialState,
+  it(`sets error on ${userActionTypes.GET_ALL}:failure`, () => {
+    const finalState = userReducer.reducer(
+      userReducer.initialState,
       testHelpers.makeReduxPackAction(LIFECYCLE.FAILURE, {
-        type: userTypes.GET_ALL,
+        type: userActionTypes.GET_ALL,
         payload: {
           error: {},
         },
@@ -78,7 +78,7 @@ describe('user/userReducer', () => {
     );
 
     const expectedState = {
-      ...initialState,
+      ...userReducer.initialState,
       error: {},
     };
 

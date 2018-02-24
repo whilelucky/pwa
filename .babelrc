@@ -4,8 +4,9 @@
       "targets": {
         "uglify": true
       },
+      "loose": true,
       "modules": false,
-      "useBuiltIns": true
+      "useBuiltIns": "entry"
     }],
     "react",
     "stage-1"

@@ -7,15 +7,16 @@ import rootReducer from './rootReducer';
 const middlewares = [
   reduxThunk.withExtraArgument({ api }),
   reduxPack,
-];
+].filter(Boolean);
 
 const storeEnhancers = [
   applyMiddleware(...middlewares),
-  __BROWSER__ && __LOCAL__ && window.devToolsExtension ? window.devToolsExtension() : (f) => f,
-];
+  __BROWSER__ && __LOCAL__ && window.devToolsExtension && window.devToolsExtension(),
+].filter(Boolean);
 
-export default (initialState) => createStore(
-  rootReducer,
-  initialState,
-  compose(...storeEnhancers),
-);
+export default (initialState) =>
+  createStore(
+    rootReducer,
+    initialState,
+    compose(...storeEnhancers),
+  );

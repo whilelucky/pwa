@@ -1,8 +1,8 @@
-import * as userTypes from './userTypes';
+import * as userActionTypes from './userActionTypes';
 
 export const getAll = () => (dispatch, getState, { api }) =>
   dispatch({
-    type: userTypes.GET_ALL,
+    type: userActionTypes.GET_ALL,
     promise: api.get('/api', {
       results: 3,
       inc: 'name,location,picture',
@@ -11,7 +11,7 @@ export const getAll = () => (dispatch, getState, { api }) =>
 
 export const getOne = () => (dispatch, getState, { api }) =>
   dispatch({
-    type: userTypes.GET_ONE,
+    type: userActionTypes.GET_ONE,
     promise: api.get('/api', {
       results: 1,
       inc: 'name,location,picture',

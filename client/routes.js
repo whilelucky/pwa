@@ -1,26 +1,16 @@
-import React from 'react';
-import { Route, IndexRoute } from 'react-router';
-import NotFoundPage from './components/NotFound/NotFound';
-import Wrapper from './views/Wrapper/Wrapper';
-import importCss from './utils/importCss';
+import Wrapper from './core/Wrapper';
+import NotFound from './core/NotFound';
+import HomePage from './home/HomePage';
 
-export const loadRoute = {
-  LandingPage: () => Promise.all([
-    import('./views/LandingPage/LandingPage' /* webpackChunkName: 'LandingPage' */),
-    importCss('LandingPage'),
-  ]),
-};
-
-export default (
-  <Route path="/" component={Wrapper}>
-
-    <IndexRoute
-      name="LandingPage"
-      getComponent={(_, cb) => loadRoute.LandingPage()
-        .then(([module]) => cb(null, module.default))}
-    />
-
-    <Route path="*" component={NotFoundPage} />
-
-  </Route>
-);
+export default [{
+  component: Wrapper,
+  routes: [{
+    path: '/',
+    exact: true,
+    name: 'HomePage',
+    component: HomePage,
+  }, {
+    name: 'NotFound',
+    component: NotFound,
+  }],
+}];
