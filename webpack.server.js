@@ -9,7 +9,7 @@ const __PWA_PUBLIC_PATH__ = process.env.PWA_PUBLIC_PATH;
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  entry: './server/index.js',
+  entry: './src/server.js',
 
   target: 'node',
 

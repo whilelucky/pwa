@@ -6,7 +6,7 @@ import compression from 'compression';
 import morgan from 'morgan';
 import slashes from 'connect-slashes';
 import Loadable from 'react-loadable';
-import renderMiddleware from './render/renderMiddleware';
+import renderExpressMiddleware from './render/renderExpressMiddleware';
 
 const { PORT } = process.env;
 
@@ -18,7 +18,7 @@ app.use('/serviceWorker.js', express.static('build/client/serviceWorker.js'));
 app.use('/manifest.json', express.static('build/client/manifest.json'));
 app.use('/build/client', express.static('build/client'));
 app.use(slashes(true));
-app.use(renderMiddleware);
+app.use(renderExpressMiddleware);
 
 Loadable.preloadAll().then(() => {
   app.listen(PORT, () => {

@@ -13,7 +13,6 @@
     "boilerplate",
     "jest"
   ],
-  "main": "server/index.js",
   "scripts": {
     "start": "npm run local",
     "stop": "pm2 delete pm2.json",

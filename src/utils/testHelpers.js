@@ -1,7 +1,8 @@
 import configureMockStore from 'redux-mock-store';
 import reduxThunk from 'redux-thunk';
 import { middleware as reduxPack, KEY } from 'redux-pack';
-import api from './api';
+import config from '../config';
+import { makeRequest } from './request';
 
 export const makeReduxPackAction = (lifecycle, { type, payload, meta = {} }) => ({
   type,
@@ -21,6 +22,6 @@ export const removeReduxPackTransaction = (action) => ({
 });
 
 export const mockStore = configureMockStore([
-  reduxThunk.withExtraArgument({ api }),
+  reduxThunk.withExtraArgument({ request: makeRequest(config.apiUrl) }),
   reduxPack,
 ]);

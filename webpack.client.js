@@ -16,8 +16,8 @@ module.exports = {
   cache: !isProd,
 
   entry: {
-    main: './client/index.js',
-    vendor: './client/vendor.js',
+    main: './src/client.js',
+    vendor: './src/vendor.js',
   },
 
   output: {
@@ -95,8 +95,8 @@ module.exports = {
         },
       }),
       new CopyWebpackPlugin([
-        { from: './client/manifest.json' },
-        { from: './client/offline', to: 'offline/[name].00000001.[ext]' },
+        { from: './src/manifest.json' },
+        { from: './src/offline', to: 'offline/[name].00000001.[ext]' },
       ], { copyUnmodified: true }),
       new SWPrecacheWebpackPlugin({
         cacheId: 'pwa',

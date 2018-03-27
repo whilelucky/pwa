@@ -6,8 +6,8 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ServerStyleSheet } from 'styled-components';
-import createStore from '../../client/store/createStore';
-import routes from '../../client/routes';
+import createStore from '../store/createStore';
+import routes from '../routes';
 import execComponentWillServerRender from './execComponentWillServerRender';
 import html from './html';
 
