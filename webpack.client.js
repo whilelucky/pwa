@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const DashboardPlugin = require('webpack-dashboard/plugin');
@@ -17,8 +16,8 @@ module.exports = {
   cache: !isProd,
 
   entry: {
-    main: './client/index.js',
-    vendor: ['./client/vendor/modules/modules.js', './client/vendor/styles/styles.css'],
+    main: './src/client.js',
+    vendor: './src/vendor.js',
   },
 
   output: {
@@ -32,18 +31,19 @@ module.exports = {
     alias: {
       react: 'preact-compat',
       'react-dom': 'preact-compat',
+      'react-dom/server': 'preact-compat/server',
     },
   },
 
   module: {
     rules: isProd ? [
       { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
-      { test: /\.css$/, loader: ExtractCssChunks.extract({ use: [{ loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader'] }) },
+      { test: /\.css$/, use: ['raw-loader'] },
       { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'images/[name].[hash:8].[ext]' } }] },
       { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'fonts/[name].[hash:8].[ext]' } }] },
     ] : [
       { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
-      { test: /\.css$/, use: ['style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader'] },
+      { test: /\.css$/, use: ['raw-loader'] },
       { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'images/[name].[ext]' } }] },
       { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'fonts/[name].[ext]' } }] },
     ],
@@ -94,10 +94,9 @@ module.exports = {
           screw_ie8: true,
         },
       }),
-      new ExtractCssChunks('css/[name].[contenthash:8].css'),
       new CopyWebpackPlugin([
-        { from: './client/manifest.json' },
-        { from: './client/offline', to: 'offline/[name].00000001.[ext]' },
+        { from: './src/manifest.json' },
+        { from: './src/offline', to: 'offline/[name].00000001.[ext]' },
       ], { copyUnmodified: true }),
       new SWPrecacheWebpackPlugin({
         cacheId: 'pwa',

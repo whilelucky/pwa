@@ -9,12 +9,12 @@ const __PWA_PUBLIC_PATH__ = process.env.PWA_PUBLIC_PATH;
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  entry: './server/index.js',
+  entry: './src/server.js',
 
   target: 'node',
 
   externals: [
-    nodeExternals({ whitelist: [/\.css$/] }),
+    nodeExternals(),
     /assetsManifest.json/,
   ],
 
@@ -30,18 +30,19 @@ module.exports = {
     alias: {
       react: 'preact-compat',
       'react-dom': 'preact-compat',
+      'react-dom/server': 'preact-compat/server',
     },
   },
 
   module: {
     rules: isProd ? [
       { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
-      { test: /\.css$/, use: ['css-loader/locals', 'postcss-loader'] },
+      { test: /\.css$/, use: ['raw-loader'] },
       { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'images/[name].[hash:8].[ext]' } }] },
       { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'fonts/[name].[hash:8].[ext]' } }] },
     ] : [
       { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
-      { test: /\.css$/, use: ['css-loader/locals', 'postcss-loader'] },
+      { test: /\.css$/, use: ['raw-loader'] },
       { test: /\.(gif|png|jpe?g|svg|ico)$/i, use: [{ loader: 'file-loader', options: { name: 'images/[name].[ext]' } }] },
       { test: /\.(woff(2)?|ttf|otf|eot)(\?[a-z0-9=&.]+)?$/, use: [{ loader: 'url-loader', options: { limit: 1000, name: 'fonts/[name].[ext]' } }] },
     ],

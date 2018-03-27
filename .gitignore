@@ -1,6 +1,9 @@
 .idea
 .vscode
+es
+lib
 build
 coverage
 node_modules
 npm-debug.log*
+lerna-debug.log*
